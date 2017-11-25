@@ -1,0 +1,149 @@
+//是否支持某个浏览器的前缀，如果你不想支持，可以设置为false
+$prefix-for-webkit: true !default;
+$prefix-for-mozilla: true !default;
+$prefix-for-microsoft: true !default;
+$prefix-for-opera: true !default;
+$prefix-for-spec: true !default;
+//prefixer
+@mixin prefixer($property, $value, $prefixes) {
+  @each $prefix in $prefixes {
+    @if $prefix == webkit and $prefix-for-webkit == true {
+      -webkit-#{$property}: $value;
+    } @else if $prefix == moz and $prefix-for-mozilla == true {
+      -moz-#{$property}: $value;
+    } @else if $prefix == ms and $prefix-for-microsoft == true {
+      -ms-#{$property}: $value;
+    } @else if $prefix == o and $prefix-for-opera == true {
+      -o-#{$property}: $value;
+    } @else if $prefix == spec and $prefix-for-spec == true {
+      #{$property}: $value;
+    } @else {
+      @warn "Unrecognized prefix: #{$prefix}"
+    }
+  }
+}
+//box-shadow
+@mixin box-shadow($shadow...) {
+  @include prefixer(box-shadow, $shadow, webkit moz spec);
+}
+//box-sizing
+@mixin box-sizing($type: border-box) {
+  @include prefixer(box-sizing, $type, webkit moz spec);
+}
+//transform
+@mixin transform($property...) {
+  @include prefixer(transform, $property, webkit moz o spec);
+}
+//transition
+@mixin transition($property...) {
+  @include prefixer(transition, $property, webkit moz o spec);
+}
+//animation
+@mixin animation($property) {
+  @include prefixer(animation, $property, webkit moz o spec);
+}
+//border-radius
+@mixin border-radius($size) {
+  @include prefixer(border-radius, $size, webkit moz spec);
+}
+//background-size
+@mixin background-size($property:cover) {
+  @include prefixer(background-size, $property, webkit moz spec);
+}
+//media-queries
+@mixin screen($min, $max) {
+  @media screen and (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+}
+//等比宽高
+@mixin equal($size) {
+  width: $size;
+  height: $size;
+}
+//vertical center
+%vertical {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  @include transform(translate3d(-50%,-50%,0));
+}
+//triangle
+@mixin triangle($direction, $size, $borderColor,$top: 50%, $left: 0) {
+  content: '';
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: $left;
+  top: $top;
+  //@include transform(translate3d(-100%,-50%,0));
+  @if $direction == top {
+    border-bottom: $size solid $borderColor;
+    border-left: $size dashed transparent;
+    border-right: $size dashed transparent;
+  }
+  @if $direction == bottom {
+    border-top: $size solid $borderColor;
+    border-left: $size dashed transparent;
+    border-right: $size dashed transparent;
+  }
+  @if $direction == left {
+    border-right: $size solid $borderColor;
+    border-top: $size dashed transparent;
+    border-bottom: $size dashed transparent;
+  }
+  @if $direction == right {
+    border-left: $size solid $borderColor;
+    border-top: $size dashed transparent;
+    border-bottom: $size dashed transparent;
+  }
+}
+//文字上下左右居中
+@mixin center($lineHeight){
+  text-align: center;
+  line-height: $lineHeight;
+}
+//背景
+@mixin background($url,$size: contain){
+  background: url($url) no-repeat 0 0;
+  background-size: $size;
+}
+@mixin arrow($direction, $size, $borderColor,$left: 0,$top: 0 ){
+  content: '';
+  width: $size;
+  height: $size;
+  border-left: 0.02rem solid $borderColor;
+  border-bottom: 0.02rem solid $borderColor;
+  position: absolute;
+  left: $left;
+  top: $top;
+  @if $direction == top {
+    @include transform(rotate(45deg))
+  }
+  @if $direction == bottom {
+    @include transform(rotate(-45deg))
+  }
+  @if $direction == left {
+    @include transform(rotate(90deg))
+  }
+  @if $direction == right {
+    @include transform(rotate(-90deg))
+  }
+}
+//overflow ellipsis
+%ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+%center_absolute {
+  left: 50%;
+  @include transform(translateX(-50%));
+  position: absolute;
+}
+%no-selected {
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+}

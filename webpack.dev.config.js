@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    bundle: './app/index.jsx',
+    bundle: './app/index.js',
     vendor: ['react', 'react-dom']
   },
   output: {
@@ -13,12 +13,6 @@ module.exports = {
     publicPath: '/',
     path: path.join(__dirname, 'dist')
   },
-  // resolve: {
-  //   extensions: ['','js','json'],//文件扩展名，预定义可不必写扩展名
-  //   alias: {
-  //     // filename: 'path'
-  //   }
-  // },
   module: {
     loaders: [{
       test: /\.js[x]?$/,
@@ -33,9 +27,19 @@ module.exports = {
       exclude: /^node_modules$/,
       loaders: ['style-loader', 'css-loader', 'less-loader']
     }, {
+      test: /\.scss$/,
+      exclude: /^node_modules$/,
+      loaders: ['style-loader', 'css-loader', 'sass-loader']
+    }, {
+      test: /\.(png|jpg)$/,
+      loader: 'url-loader?limit=8192',
+    }, {
       test: /\.css$/,
       exclude: /^node_modules$/,
       loaders: ['style-loader', 'css-loader']
+    }, {
+      test: /\.(woff|eot|ttf|svg|gif)$/,
+      loader: 'file-loader?name=iconfont/[path][name].[ext]',
     }]
   },
   plugins: [
