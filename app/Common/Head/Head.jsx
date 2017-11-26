@@ -59,10 +59,6 @@ export default class Head extends Component {
 	constructor(props){
 		super(props);
 	}
-	
-	componentDidMount(){
-		
-	}
 	render(){
 		const {isChatList, title} = this.props.data;
 		const iconList = isChatList ?
@@ -71,7 +67,7 @@ export default class Head extends Component {
 
 		return (<div className="Head-container">
 							<header	className="Head">
-									<HeadPortrait data={this.props.data} />
+									<HeadPortrait data={this.props.data}  />
 									<div className="Header-rightElement">
 										{iconList}
 									</div>

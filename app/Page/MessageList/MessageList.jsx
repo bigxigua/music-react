@@ -6,6 +6,7 @@ import ChatItem from '../../Common/ChatItem/ChatItem.jsx';
 export default class MessageList extends Component {
 	constructor(props){
 		super(props);
+		console.log(this.props)
 	}
 	render(){
 		const MessageListData = {isChatList: true};

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Head from '../../Common/Head/Head.jsx';
+import InputArea from '../../Component/InputArea/InputArea.jsx';
 import './ChatRoom.scss'
 
 export default class ChatRoom extends Component {
@@ -11,6 +12,7 @@ export default class ChatRoom extends Component {
 		return (<div className="ChatRoom-container">
 								<Head data={MessageListData} />
 								<div className="ChatBox"></div>
+								<InputArea />
 						</div>)
 	}
 }
