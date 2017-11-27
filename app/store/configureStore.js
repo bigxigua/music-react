@@ -2,9 +2,17 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from '../reducers';
 
-const finalCreatStore = applyMiddleware(thunk)(createStore);
-const store = finalCreatStore(reducer);
 
+const store = createStore(
+	reducer,
+	applyMiddleware(thunk)
+)
+// const finalCreatStore = applyMiddleware(thunk)(createStore);
+// const store = finalCreatStore(reducer);
+
+let unsubscribe = store.subscribe( () => {
+	console.log('--------')
+} )
 export default store
 
 
