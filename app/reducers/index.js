@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux';
 import pageState from './pageState.js';
+import setUserInfo from './setUserInfo.js';
+import setChatLists from './setChatLists.js';
 
 const rootReducer = combineReducers({
-	pageState
+	pageState,
+	setUserInfo,
+	setChatLists
 })
-console.log(rootReducer)
+
 export default rootReducer

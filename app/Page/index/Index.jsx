@@ -1,36 +1,33 @@
-import React, { Component } from 'react';
-import Head from '../../Common/Head/Head.jsx';
-import SearchBar from '../../Common/SearchBar/SearchBar.jsx';
-import ChatItem from '../../Common/ChatItem/ChatItem.jsx';
+import React, { Component } from 'react'
+import Head from '../../containers/Head.js'
+import SearchBar from '../../containers/SearchBar.js'
+import ChatItem from '../../containers/ChatItem.js'
 
 export default class Index extends Component {
 	constructor(props){
 		super(props);
+		this.deleteItem = this.deleteItem.bind(this);
 	}
+
 	componentDidMount(){
-		console.log(this.props)
+		// console.log(this.props)
+	}
+	deleteItem(index){
+		this.props.deleteItem(index);
 	}
 	render(){
 		const MessageListData = {isChatList: true};
-		const list = {
-			chatType: 0, //0单人聊天，1讨论组，2群
-			chatAvatar: '', //头像
-			name: '装逼讨论组',
-			lastedTime: '2017/11/25 17:13:00', //最后发言时间
-			lastedSpeakerName: '傻吊',
-			lastedSpeakeWord: '我是傻吊',
-			unreadNumber: 0 //未读消息数量
-		}
-		const ListItems = [list,list,list].map((item, index) => 
-				<ChatItem data={item} key={index}></ChatItem>
-		)
 
-		return (<div className="MessageList-container" onClick={ () => {this.props.aaaa(11)} }>
-							{ this.props.count }
+		console.log(this.props.lists)
+		const ListItems = this.props.lists.map((item, index) =>{
+				return (<ChatItem data={item} key={item.Index} index={item.Index} deleteItem={this.deleteItem}></ChatItem>)
+		})
+		// onClick={ () => {this.props.aaaa(11)} }
+		return (<div className="MessageList-container">
 							<Head data={MessageListData}></Head>
 							<div className="ActiveList-container">
 								<SearchBar></SearchBar>
-								{ListItems}
+								{ ListItems }
 							</div>
 						</div>)
 	}

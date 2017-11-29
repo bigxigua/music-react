@@ -1,4 +1,3 @@
-
 (function() {
   String.prototype.format = function() {
     var str = this;
@@ -9,7 +8,7 @@
     return str;
   }
   window.TBZ = {
-    DEFAULT_AVATAR: require('./images/avatar_user.jpg'),
+    DEFAULT_AVATAR: require('../images/avatar_user.jpg'),
     isIOSDevice: function() {
       var u = navigator.userAgent,
         app = navigator.appVersion;

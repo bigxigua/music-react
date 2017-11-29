@@ -13,8 +13,6 @@ let defaultState = {
 // defaultState = Immutable.fromJS(defaultState);
 
 export default function pageState(state = defaultState, action) {
-	console.log(action.count)
-	const count = action.count;
 	switch(action.type) {
 		case 'OPEN_USERINFO_PAGE_STATE': {
 			return {count: state.count + action.count}
@@ -23,5 +21,4 @@ export default function pageState(state = defaultState, action) {
 			return state
 		}
 	}
-	console.log(action,'----')
 }

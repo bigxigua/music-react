@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Head.scss'
+import '../scss/head.scss'
 
 const HeadPortrait = (props) => {
 	const {onlineState, portrait, isChatList, title} = props.data;
@@ -57,13 +57,14 @@ export default class Head extends Component {
 		console.log(this.props)
 	}
 	render(){
-		const {onlineState, portrait, isChatList, title} = this.props.data;
+		const {onlineState, userAvatar} = this.props;
+		const { isChatList, title } = this.props.data;
 		const iconList = isChatList ?
 											( <div><MessageIcon /><MoreIcon /><DeleteIcon /></div>) :
 											( <div><SearchIcon /><UserSettingIcon /><MoreIcon /></div>)
 		const Element = isChatList ? 
 		(<div className="Header-onlineState-container" onClick={this.showUserInfo}>
-				<img src={portrait || TBZ.DEFAULT_AVATAR} alt="用户头像"/>
+				<img src={userAvatar} alt="用户头像"/>
 				<div className="Header-onlineState"></div>
 		</div>) : 
 		(<div className="Header-Menu-container">
