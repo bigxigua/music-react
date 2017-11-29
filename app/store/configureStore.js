@@ -7,11 +7,12 @@ const store = createStore(
 	reducer,
 	applyMiddleware(thunk)
 )
+
 // const finalCreatStore = applyMiddleware(thunk)(createStore);
 // const store = finalCreatStore(reducer);
 
 let unsubscribe = store.subscribe( () => {
-	console.log('--------')
+	
 } )
 export default store
 

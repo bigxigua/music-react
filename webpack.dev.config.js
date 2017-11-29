@@ -4,8 +4,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  devtool: 'eval-source-map',
   entry: {
-    bundle: './app/index.js',
+    bundle: './app/index.jsx',
     vendor: ['react', 'react-dom']
   },
   output: {
