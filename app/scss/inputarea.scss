@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import "../../Common/mixin.scss";
+@import "./mixin.scss";
 
 .InputArea-container{
 	width: 100%;
@@ -50,4 +50,8 @@
 		margin-left: 0.4rem;
 		margin-top: 0.4rem;
 	}
+}
+.InputArea-send{
+	overflow: hidden;
+	height: 100%;
 }

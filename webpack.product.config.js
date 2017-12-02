@@ -12,7 +12,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     publicPath: '/',
-    path: path.join(__dirname, '/server/public/dist/')
+    path: path.join(__dirname, 'dist')
   },
   module: {
     loaders: [{
@@ -51,15 +51,5 @@ module.exports = {
       template: './app/index.html', //html模板路径
       hash: false
     })
-  ],
-  devServer: {
-    publicPath: '/',
-    contentBase: path.join(__dirname, 'dist'),
-    inline: true,
-    historyApiFallback: false,
-    hot: false,
-    host: '0.0.0.0',
-    port: 3002,
-    compress: true //是否启用gzip压缩
-  }
+  ]
 }

@@ -1,13 +1,17 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-
-import { setPageState, deleteChatItem } from '../../actions/index.js'
 import Index from './Index.jsx'
+
+import { 
+	deleteChatItem,
+	setPageState
+} from '../../actions/index.js'
+
 
 
 function mapStateToProps(state) {
 	return {
-		count: state.pageState.count,
+		currentPage: state.setPageState.pageState,
 		lists: state.setChatLists.lists
 	}
 }
@@ -15,8 +19,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return {
 		// aaaa: bindActionCreators({setPageState}, dispatch)
-		aaaa: (params) => {dispatch(setPageState(params))},
-		deleteItem: (index) => {dispatch(deleteChatItem(index))}
+		deleteItem: (index) => {dispatch(deleteChatItem(index))},
+		setPageState: (params) => {dispatch(setPageState(params))}
 	}
 }
 

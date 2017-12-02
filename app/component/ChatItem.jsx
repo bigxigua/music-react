@@ -11,14 +11,16 @@ const EXPAND_CLASS = 'ChatListItem-Item-expand'
 export default class ChatItem extends Component {
 	constructor(props){
 		super(props);
-	
+
+		this.setPageStateToChatRoom = this.setPageStateToChatRoom.bind(this);
 		this.formatTime = this.formatTime.bind(this);
-		this.unExpand = this.unExpand.bind(this);
 		this.signAsUnread = this.signAsUnread.bind(this);
 		this.deleteElement = this.deleteElement.bind(this);
 		this.listenTransitionEnd = this.listenTransitionEnd.bind(this);
 	}
-
+	setPageStateToChatRoom(){
+		return this.props.setPageState('CHATROOM-PAGE')
+	}
 	formatTime(time){
 		const _time = time.replace(/-/g, '-');
 		const hour = new Date(_time).getHours();
@@ -46,10 +48,6 @@ export default class ChatItem extends Component {
 		this.hasClass(element, EXPAND_CLASS) ? (element.classList.remove(EXPAND_CLASS)) : {};
 	}
 
-	unExpand(e){
-		this.unExpandHandle(this.refs.oDragDiv)
-	}
-
 	componentDidMount(){
 		this.dragHandle(this.refs.oDragDiv);
 	}
@@ -58,7 +56,6 @@ export default class ChatItem extends Component {
 		const { deleteItem } = this.props;
 		window.webkitTransitionEnd ? handleName = 'webkitTransitionEnd' : {};
 		oElement.addEventListener(handleName, function handle() {
-			console.log('fuck', oElement.classList)
 			deleteItem(index)
 		}, false)
 	}
@@ -82,14 +79,14 @@ export default class ChatItem extends Component {
 		const unReadMessage = info.unreadNumber > 0 ? (<div className="ChatListItem-msg-number">{info.unreadNumber}</div>) : null;
 		return (
 			<div className="ChatListItem-container animated" ref={oContainerName}>
-				<div className="ChatListItem-Item" ref="oDragDiv" onClick={this.unExpand}>
+				<div className="ChatListItem-Item" ref="oDragDiv" onClick={this.setPageStateToChatRoom}>
 						<img src={info.chatAvatar || DEFAULT_GROUP_AVATAR} className="ChatListItem-avatar"/>
 						<div className="ChatListItem-msg-box">
 								<p>{info.name}</p>
 								<p>{info.lastedSpeakerName}: {info.lastedSpeakeWord}</p>
 						</div>
 						<div className="ChatListItem-time">{this.formatTime(info.lastedTime)}</div>
-						{unReadMessage}{this.props.index}
+						{unReadMessage}
 				</div>
 				<div className="ChatListItem-hidden-element">
 						<div className="ChatListItem-hidden-sign" onClick={this.signAsUnread}>

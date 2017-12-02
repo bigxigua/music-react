@@ -2,6 +2,7 @@ const list1 = {
 	chatType: 0, //0单人聊天，1讨论组，2群
 	chatAvatar: '', //头像
 	name: '装逼讨论组1',
+	roomID: 0,
 	lastedTime: '2017/11/25 17:13:00', //最后发言时间
 	lastedSpeakerName: '傻吊',
 	lastedSpeakeWord: '我是傻吊',
@@ -13,6 +14,7 @@ const list2 = {
 	chatAvatar: '', //头像
 	name: '装逼讨论组2',
 	Index: 1,
+	roomID: 1,
 	lastedTime: '2017/11/25 17:13:00', //最后发言时间
 	lastedSpeakerName: '傻吊',
 	lastedSpeakeWord: '我是傻吊',
@@ -23,6 +25,7 @@ const list3 = {
 	chatAvatar: '', //头像
 	name: '装逼讨论组3',
 	Index: 2,
+	roomID: 2,
 	lastedTime: '2017/11/25 17:13:00', //最后发言时间
 	lastedSpeakerName: '傻吊',
 	lastedSpeakeWord: '我是傻吊',

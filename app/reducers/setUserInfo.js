@@ -5,11 +5,8 @@ let defaultState = {
 }
 
 export default function setUserInfo(state = defaultState, action) {
-	switch(action.type) {
-		case 'OPEN_USERINFO_PAGE_STATE': {
-			return {count: state.count - 1}
-		}  
-		default: {
+	switch(action.type) { 
+		default: { 
 			return state
 		}
 	}

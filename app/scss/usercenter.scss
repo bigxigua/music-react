@@ -1,0 +1,97 @@
+@charset "UTF-8";
+@import "./mixin.scss";
+
+.UserCenter-container{
+	 background: #ffffff;
+	 height: 100vh;
+}
+.UserCenter-top-bg{
+	position: relative;
+	width: 100%;
+	height: 5.5rem;
+	img{
+		width: 100%;
+		height: 100%;
+	}
+}
+.UserCenter-avatar{
+	position: absolute;
+	width: 2.5rem;
+	height: 2.5rem;
+	left: 50%;
+	bottom: -1rem;
+	transform: translateX(-50%);
+	img{
+		width: 100%;
+		height: 100%;
+		border-radius: 100%;
+	}
+}
+.UserCenter-out{
+	position: absolute;
+	color: #ffffff;
+	font-size: 0.4rem;
+	margin-top: 0.2rem;
+	margin-left: 0.2rem;
+	i{
+		position: relative;
+		top: 0.06rem;
+		margin-right: 0.1rem;
+	}
+}
+.UserCenter-zan{
+	width: 1.1rem;
+	height: 1.2rem;
+	text-align: center;
+	background: rgba(0,0,0,0.4);
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	color: white;
+	p{
+		font-size: 0.3rem;
+	}
+	i{
+		font-size: 0.6rem;
+		margin-top: 0.07rem;
+	}
+}
+.UserCenter-username{
+	width: 100%;
+	text-align: center;
+	margin-top: 1.2rem;
+	font-size: 0.4rem;
+	font-weight: 600;
+}
+.UserCenter-sign{
+	width: 100%;
+	text-align: center;
+	margin-top: -0.2rem;
+	color: #878787;
+	span{
+		font-size: 0.3rem;
+	}
+	i{
+		text-decoration: underline;
+		font-size: 0.2rem;
+	}
+}
+.UserCenter-userInfo{
+	margin-top: 0.1rem;
+	li{
+		height: 1rem;
+		i{
+			font-size: 0.4rem;
+			font-weight: 600;
+			color: #878787;
+			margin-left: 0.4rem;
+		}
+		span{
+			color: #000;
+			font-size: 0.4rem;
+			font-weight: 400;
+			margin-left: 0.4rem;
+			vertical-align: middle;
+		}
+	}
+}

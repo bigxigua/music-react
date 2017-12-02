@@ -1,0 +1,51 @@
+@charset "UTF-8";
+@import "./mixin.scss";
+
+.MessageList-container{
+	width: 100%;
+	height: 2rem;
+	background: red;
+	position: relative;
+}
+.MessageList-userinfo{
+	float: right;
+	margin-right: 0.1rem;
+	.MessageList-avatar{
+		width: 1.2rem;
+    height: 1.2rem;
+    @include border-radius(100%);
+    margin-top: 0.2rem;
+	}
+}
+.MessageList-content{
+	float: right;
+	color: #5f6265;
+	width: 100%;
+	p{
+		font-size: rem(20);
+	}
+	.MessageList-message{
+		text-align: center;
+		padding: 6px 12px;
+		background: #ffffff;
+		max-width: 90%;
+		border: 1px solid #ccc;
+		word-break: break-all;
+		position: relative;
+		@include border-radius(8);
+		.triangle-right-outer{
+			// position: absolute;
+	  //   bottom: 0;
+	  //   font-size: 18px;
+	  //   display: none;
+	  //   color: #b1a9a9;
+	  //   left: -25px;
+	    content: "";
+	    -webkit-transform: rotate(-20deg);
+	    transform: rotate(-20deg);
+	    position: absolute;
+	    border-top: 2px solid transparent;
+	    border-bottom: 7px solid transparent;
+		}
+	}
+}

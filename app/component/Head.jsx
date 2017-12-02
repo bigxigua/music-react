@@ -51,25 +51,30 @@ const UserSettingIcon = () => {
 export default class Head extends Component {
 	constructor(props){
 		super(props);
-		this.showUserInfo = this.showUserInfo.bind(this);
+		this.showUserCenter = this.showUserCenter.bind(this);
+		this.showChatLists = this.showChatLists.bind(this);
 	}
-	showUserInfo(){
-		console.log(this.props)
+	showUserCenter(){
+		return this.props.setPageState('USERINFO-PAGE')
+	}
+	showChatLists(){
+		return this.props.setPageState('MESSAGELIST-PAGE')
 	}
 	render(){
 		const {onlineState, userAvatar} = this.props;
 		const { isChatList, title } = this.props.data;
 		const iconList = isChatList ?
-											( <div><MessageIcon /><MoreIcon /><DeleteIcon /></div>) :
-											( <div><SearchIcon /><UserSettingIcon /><MoreIcon /></div>)
+											( <div><SearchIcon /><UserSettingIcon /><MoreIcon /></div>):
+											( <div><MessageIcon /><MoreIcon /><DeleteIcon /></div>)
+											
 		const Element = isChatList ? 
-		(<div className="Header-onlineState-container" onClick={this.showUserInfo}>
-				<img src={userAvatar} alt="用户头像"/>
-				<div className="Header-onlineState"></div>
-		</div>) : 
-		(<div className="Header-Menu-container">
+		(<div className="Header-Menu-container" onClick={this.showChatLists}>
 				<i className="w-icon-menu"></i>
 				<div className="Header-title">{title}</div>
+		</div>): 
+		(<div className="Header-onlineState-container">
+				<img src={userAvatar} onClick={this.showUserCenter} />
+				<div className="Header-onlineState"></div>
 		</div>);
 		return (<div className="Head-container">
 							<header	className="Head">

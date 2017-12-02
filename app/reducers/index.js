@@ -1,12 +1,16 @@
 import { combineReducers } from 'redux';
-import pageState from './pageState.js';
+import setPageState from './setPageState.js';
 import setUserInfo from './setUserInfo.js';
 import setChatLists from './setChatLists.js';
+import setChatRoomInfo from './setChatRoomInfo.js';
+import message from './message.js';
 
 const rootReducer = combineReducers({
-	pageState,
+	setPageState,
 	setUserInfo,
-	setChatLists
+	setChatLists,
+	setChatRoomInfo,
+	message
 })
 
 export default rootReducer
