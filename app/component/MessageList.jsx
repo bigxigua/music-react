@@ -5,19 +5,18 @@ import '../scss/messagelist.scss'
 export default class MessageList extends Component {
 	constructor(props){
 		super(props);
-		console.log(this.props)
 	}
 	render(){
 		const info = this.props.data;
-		return (
+		return ( 
 			<div className="MessageList-container">
 				<div className="MessageList-userinfo">
 					<img src={info.avatar} className="MessageList-avatar" />
 				</div>
 				<div className="MessageList-content">
-					<p>{ info.timestamp }</p>
+					<p>{ info.nickname }</p>
 					<div className="MessageList-message">
-							{ info.message }
+							{ info.content }
 							<div className="triangle-right-outer"></div>
 					</div>
 				</div>

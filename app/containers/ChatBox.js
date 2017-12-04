@@ -6,19 +6,13 @@ import { addMessage } from '../actions/index.js'
 function mapStateToProps(state) {
 	return {
 		chatRoomBackGround: state.setChatRoomInfo.chatRoomBackGround,
-		message: state.message.message,
-		messageLists: [{
-			name: 'dsadsa',
-			avatar: TBZ.DEFAULT_AVATAR,
-			message: 'fuck you',
-			timestamp: new Date().getTime()
-		}]
+		messageLists: state.message.messageLists
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		addMessage: (params) => { dispatch(setPageState(params)) }
+		addMessage: (params) => { dispatch(addMessage(params)) }
 	}
 }
 

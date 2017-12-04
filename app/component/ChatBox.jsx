@@ -12,16 +12,17 @@ export default class ChatBox extends Component {
 	listenMessage(){
 		socket.on('newMessage', (message) => {
 			console.log(message)
+			this.props.addMessage(message)
 		})
 	}
 	render(){
+		console.log(this.props.messageLists)
 		const ChatBoxStyle = {
 			backgroundImage: 'url(' + this.props.chatRoomBackGround + ')'
 		}
 		const MessageLists = this.props.messageLists.map((item) => {
-			return (<MessageList key={item.timestamp} data={item}> </MessageList>)
+			return (<MessageList key={item.time} data={item}> </MessageList>)
 		})
-		console.log(MessageLists)
 		return (
 			<div className="ChatBox-container" style={ChatBoxStyle}>
 				<div className="MessageContainer-content">

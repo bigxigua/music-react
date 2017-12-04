@@ -6,6 +6,6 @@ module.exports = {
 		//2.保存消息到聊天记录表
 		//3.emit socket 到client
 		console.log('--saveMessage---')
-		socket.emit('newMessage', message)
+		socket.broadcast.emit('newMessage', message)
 	}
 }

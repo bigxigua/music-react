@@ -12,6 +12,7 @@ const callbackError = function (cb, err) {
 module.exports = function (io) {
 	io.on('connection', (socket) => {
 		console.log('----------connection----------')
+		console.log(socket.id)
 		socket.on('message', (msg, cb) => {
 			message.saveMessage(msg, socket, cb).catch((err) => {
 				callbackError(cb, err)
