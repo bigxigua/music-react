@@ -1,0 +1,86 @@
+@charset "UTF-8";
+@import "./mixin.scss";
+
+.Form-input{
+	background: #ebf2f5;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 1rem;
+    padding: .4rem;
+    margin-top: .4rem;
+	input{
+		color: #34373b;
+	    border: 0;
+	    background: transparent;
+	    display: block;
+	    width: 100%;
+	    font-size: 0.3rem;
+	     margin-left: 1rem;
+	}
+}
+.Form-input-account,
+.Form-input-password,
+.Form-input-name{
+ &:before {
+ 	width: 0.5rem;
+    height: 0.5rem;
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: .5rem;
+    top: .32rem;
+ }
+}
+.Form-input-account,
+.Form-input-name{
+	&:before{
+		background: url(../images/tv.png) no-repeat 0 0;
+    	background-size: contain;
+	}
+}
+.Form-input-password{
+	&:before{
+		background: url(../images/key.png) no-repeat 0 0;
+    	background-size: contain;
+	}
+}
+.Form-btn{
+	margin-top: .4rem;
+	width: 100%;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    font-size: .4rem;
+    border: 1px solid #ff5253;
+    border-radius: 1rem;
+    background: #ff5253;
+    text-align: center;
+    color: #fff;
+    display: block;
+}
+.Form-footer{
+	font-size: .35rem;
+    padding: 0 .3rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-top: 0.3rem;
+    a{
+    	color: #ff5253;
+    }
+}
+.Toast-container{
+    width: 80%;
+    height: 1rem;
+    background: #ebf2f5;
+    text-align: center;
+    line-height: 1rem;
+    font-size: 0.3rem;
+    color: gray;
+    border-radius: 0.1rem;
+    position: fixed;
+    bottom: 1rem;
+    left: 10%;
+    @include transform(translateX(-50%));
+}
+.hideToast{
+    display: none;
+}

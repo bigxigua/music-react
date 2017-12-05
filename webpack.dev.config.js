@@ -54,11 +54,12 @@ module.exports = {
   ],
   devServer: {
     publicPath: '/',
-    // contentBase: path.join(__dirname, 'dist'),
+    contentBase: '/server/public/dist',
     inline: true,
-    historyApiFallback: false,
+    historyApiFallback: true,
     hot: false,
     host: '0.0.0.0',
+
     port: 3002,
     compress: true //是否启用gzip压缩
   }

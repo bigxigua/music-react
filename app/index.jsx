@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route,Link} from 'react-router-dom'
 import { Provider } from 'react-redux'
 import './global/global.js' 
 import store from './store/configureStore.js';
@@ -30,9 +30,9 @@ class App extends React.Component {
 			<MuiThemeProvider muiTheme={getMuiTheme()}>
 					<Router>
 						<div className='container'>
-							<Route path="/login/" component={Login} />
-							<Route path="/register/" component={Register} />
-							<Route exact path="/" component={Index} />
+							<Route path="/index" component={Index} />
+							<Route path="/login" component={Login} />
+							<Route path="/register" component={Register} />
 						</div>		
 					</Router>
 				
@@ -45,11 +45,9 @@ injectTapEventPlugin();
 
 ReactDOM.render(
 	<Provider store={store}>
-		<Router>
-			<div>
-				<App />
-			</div>
-		</Router>
+		<div>
+			<App />
+		</div>
 	</Provider>,
 	document.getElementById('root')
 )

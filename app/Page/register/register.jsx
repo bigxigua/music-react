@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-
-import '../../scss/login.scss'
+import FormContent from '../../component/Form.jsx';
+import '../../scss/register.scss'
 import classNames from 'classnames'
 
 export default class Register extends Component {
@@ -14,7 +14,7 @@ export default class Register extends Component {
 	render(){
 		return (
 			<div className="Register-container">
-					
+				<FormContent formType="register" />
 			</div>
 	)
 	}
