@@ -11,12 +11,10 @@ export default class ChatBox extends Component {
 	}
 	listenMessage(){
 		socket.on('newMessage', (message) => {
-			console.log(message)
 			this.props.addMessage(message)
 		})
 	}
 	render(){
-		console.log(this.props.messageLists)
 		const ChatBoxStyle = {
 			backgroundImage: 'url(' + this.props.chatRoomBackGround + ')'
 		}
@@ -27,6 +25,7 @@ export default class ChatBox extends Component {
 			<div className="ChatBox-container" style={ChatBoxStyle}>
 				<div className="MessageContainer-content">
 					{ MessageLists }
+					
 				</div>
 			</div>
 		)

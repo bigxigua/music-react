@@ -17,8 +17,8 @@ export default class InputArea extends Component {
 		let message = {
 			roomID: this.props.roomID || 1,
 			type: 'textMessage',
-			nickname: this.props.userNickname,
-			avatar: this.props.userAvatar,
+			nickname: this.props.nickname,
+			avatar: this.props.avatar,
 			content: this.state.content,
 			time: timestamp //时间戳
 		}

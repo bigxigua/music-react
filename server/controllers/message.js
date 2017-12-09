@@ -1,4 +1,4 @@
-
+const User = require('../models/user-mongo.js');
 
 module.exports = {
 	saveMessage: async(message, socket, cb) => {

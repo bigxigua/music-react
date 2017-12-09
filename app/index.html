@@ -11,6 +11,11 @@
     <meta name="full-screen" content="yes">
     <meta name="x5-fullscreen" content="true">
     <title>music</title>
+    <script>
+       if(!window.localStorage.getItem('token') && !/login/.test(window.location.pathname)) {
+            window.location.href = '/login'
+        }
+    </script>
 <body>
     <div id="root"></div>
 </body>

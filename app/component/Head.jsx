@@ -1,23 +1,18 @@
 import React, { Component } from 'react';
+import classNames from 'classnames'
 import '../scss/head.scss'
-
-const HeadPortrait = (props) => {
-	const {onlineState, portrait, isChatList, title} = props.data;
-	
-	return (<div >{Element}</div>)
-}
 
 const MessageIcon = () => {
 	return (
 			<div className="Header-icon-message">
 				<i className="w-icon-message"></i>
-			</div>
+			</div> 
 		)
 }
 
-const MoreIcon = () => {
+const MoreIcon = (props) => {
 	return (
-			<div className="Header-icon-more">
+			<div className="Header-icon-more" onClick={props.toggleSettingCard}>
 				<i className="w-icon-more"></i>
 			</div>
 		)
@@ -31,7 +26,7 @@ const DeleteIcon = () => {
 		)
 }
 
-const SearchIcon = () => {
+const SearchIcon = (props) => {
 	return (
 			<div className="Header-icon-search">
 				<i className="w-icon-search"></i>
@@ -53,6 +48,12 @@ export default class Head extends Component {
 		super(props);
 		this.showUserCenter = this.showUserCenter.bind(this);
 		this.showChatLists = this.showChatLists.bind(this);
+		this.getUserInfo = this.getUserInfo.bind(this);
+		this.toggleSettingCard = this.toggleSettingCard.bind(this);
+		this.state = {
+			showSettingCard: false,
+			initAnimate: false
+		}
 	}
 	showUserCenter(){
 		return this.props.setPageState('USERINFO-PAGE')
@@ -60,12 +61,34 @@ export default class Head extends Component {
 	showChatLists(){
 		return this.props.setPageState('MESSAGELIST-PAGE')
 	}
+	getUserInfo(){
+		return this.props.getUserInfo(localStorage.getItem('account'))
+	}
+	toggleSettingCard(){
+		const { showSettingCard } = this.state;
+		this.setState({
+			 initAnimate: true
+		})
+		console.log(showSettingCard)
+		!this.props.data.isChatList ? (this.setState({
+			showSettingCard: !showSettingCard
+		})) : {};
+	}
 	render(){
-		const {onlineState, userAvatar} = this.props;
+		this.getUserInfo();
+		const {onlineState, avatar} = this.props;
 		const { isChatList, title } = this.props.data;
+		const {showSettingCard, initAnimate} = this.state;
+		const settingCardClassNames = classNames({
+			'SettingCard-container animated': true,
+			'hideCard': !initAnimate,
+			'bounceInRight': showSettingCard && initAnimate,
+			'bounceOutRight': !showSettingCard && initAnimate,
+			
+		})
 		const iconList = isChatList ?
-											( <div><SearchIcon /><UserSettingIcon /><MoreIcon /></div>):
-											( <div><MessageIcon /><MoreIcon /><DeleteIcon /></div>)
+											( <div><SearchIcon /><UserSettingIcon /><MoreIcon toggleSettingCard={this.toggleSettingCard} /></div>):
+											( <div><MessageIcon /><MoreIcon toggleSettingCard={this.toggleSettingCard} /><DeleteIcon /></div>)
 											
 		const Element = isChatList ? 
 		(<div className="Header-Menu-container" onClick={this.showChatLists}>
@@ -73,12 +96,20 @@ export default class Head extends Component {
 				<div className="Header-title">{title}</div>
 		</div>): 
 		(<div className="Header-onlineState-container">
-				<img src={userAvatar} onClick={this.showUserCenter} />
+				<img src={avatar ? avatar : TBZ.DEFAULT_AVATAR} onClick={this.showUserCenter} />
 				<div className="Header-onlineState"></div>
 		</div>);
 		return (<div className="Head-container">
 							<header	className="Head">
 									<div>{ Element }</div>
+									<div className={settingCardClassNames}>
+										<ul>
+												<li>创建群组</li>
+												<li>用户资料</li>
+												<li>设置</li>
+												<li>切换账号</li>
+										</ul>
+									</div>
 									<div className="Header-rightElement">
 										{iconList}
 									</div>

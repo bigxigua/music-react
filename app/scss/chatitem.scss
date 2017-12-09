@@ -1,15 +1,16 @@
 @charset "UTF-8";
 @import "./mixin.scss";
 
-.ChatListItem-container{
+.ChatListItem-container {
 	width: 100%;
 	height: 1.6rem;
 	background: #ffffff;
 	position: relative;
 	border-bottom: 0.01rem solid #e6e6e6;
-	@include transform(translate3d(0,0,0))
+	@include transform(translate3d(0, 0, 0))
 }
-.ChatListItem-Item{
+
+.ChatListItem-Item {
 	width: 100%;
 	height: 100%;
 	position: absolute;
@@ -20,37 +21,45 @@
 	@include transition(all ease-out 0.4s);
 	opacity: 1;
 }
-.ChatListItem-Item-expand{
-	@include transform(translate3d(-4rem,0,0))
+
+.ChatListItem-Item-expand {
+	@include transform(translate3d(-4rem, 0, 0))
 }
-.ChatListItem-avatar{
+
+.ChatListItem-avatar {
 	width: 1.2rem;
 	height: 1.2rem;
 	margin-left: 0.4rem;
 	margin-top: 0.2rem;
 	float: left;
 }
-.ChatListItem-msg-box{
+
+.ChatListItem-msg-box {
 	float: left;
 	margin-left: 0.3rem;
 	margin-top: 0.18rem;
-	p{
+
+	p {
 		font-size: 0.35rem;
 		color: #888;
 		line-height: 0.6rem
 	}
-	p:first-child{
-		color: rgba(0,0,0,.870588);
+
+	p:first-child {
+		color: rgba(0, 0, 0, .870588);
 	}
+
 }
-.ChatListItem-time{
+
+.ChatListItem-time {
 	color: #999;
 	font-size: 0.3rem;
 	float: right;
 	margin-right: 0.4rem;
 	margin-top: 0.25rem;
 }
-.ChatListItem-msg-number{
+
+.ChatListItem-msg-number {
 	width: 0.42rem;
 	height: 0.42rem;
 	@include border-radius(100%);
@@ -63,11 +72,13 @@
 	left: 1.2rem;
 	top: 0.1rem;
 }
-.ChatListItem-hidden-element{
+
+.ChatListItem-hidden-element {
 	height: 100%;
 	overflow: hidden;
 	float: right;
-	div{
+
+	div {
 		float: left;
 		height: 100%;
 		text-align: center;
@@ -75,12 +86,15 @@
 		font-size: 0.4rem;
 		color: #ffffff;
 	}
-	.ChatListItem-hidden-sign{
+
+	.ChatListItem-hidden-sign {
 		width: 2.2rem;
 		background: #C8C7CD;
 	}
-	.ChatListItem-hidden-del{
+
+	.ChatListItem-hidden-del {
 		width: 1.8rem;
 		background: #FF3A31;
 	}
+
 }

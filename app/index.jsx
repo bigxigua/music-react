@@ -16,10 +16,17 @@ import 'amfe-flexible'
 import '../node_modules/animate.css/animate.min.css'
 import '../node_modules/uiw-iconfont/fonts/w-iconfont.css'
 
+import Bundle from './Page/bundle.jsx'
 
-import Index from './Page/index/index.js';
+import Index from 'bundle-loader?lazy!./Page/index/index.js';
 import Login from './Page/login/login.js';
 import Register from './Page/register/Register.js'
+
+const IndexBundle = () => (
+	<Bundle load={Index}>
+		{(IndexBundle) => <IndexBundle />}
+	</Bundle>
+)
 
 class App extends React.Component {
 	constructor(props) {
@@ -30,7 +37,7 @@ class App extends React.Component {
 			<MuiThemeProvider muiTheme={getMuiTheme()}>
 					<Router>
 						<div className='container'>
-							<Route path="/index" component={Index} />
+							<Route exact path="/" component={IndexBundle} />
 							<Route path="/login" component={Login} />
 							<Route path="/register" component={Register} />
 						</div>		

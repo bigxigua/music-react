@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import '../scss/form.scss'
-import classNames from 'classnames'
+import { Link } from 'react-router-dom';
+import '../scss/form.scss';
+import classNames from 'classnames';
+import reqwest from 'reqwest';
+
 const Toast = (props) => {
 	let text = props.text;
 	const toastClass = classNames({
@@ -38,10 +40,45 @@ export default class FormContent extends Component {
 		       : (this.showToastHandle('请填写用户名'))
 	}
 	confirmSubmission(){
-		const checkNameResult = this.props.formType == 'register' 
-		                      ? (this.checkName()) : true;
+		const { formType } = this.props;
+		let checkNameResult, url = TBZ.DEFAULT_URL;
+		formType == 'register' ? (checkNameResult = this.checkName(), url += 'register') 
+													 : (checkNameResult = true, url += 'login');
+
 		if(this.checkAccount() && this.checkPassword() && checkNameResult) {
-			window.location.href = '/index'
+			let data = {
+				account: this.refs.account.value.trim(),
+				password: this.refs.password.value.trim()
+			}
+
+			formType == 'register' ? (data = Object.assign({}, data, {nickname: this.refs.name.value.trim()})) : {};
+
+			reqwest({
+				url: url,
+				method: 'post',
+				data: data,
+				crossOrigin: true,
+				success: (res) => {
+					console.log(res)
+					this.vertifyResponse(res)
+				},
+				error: (err) => {
+					console.log(err)
+					this.vertifyResponse(err)
+				}
+			})
+		}
+	}
+	vertifyResponse(data){
+		const _data = data.data;
+		if(_data.token) {
+			localStorage.setItem('token', _data.token);
+			localStorage.setItem('account', this.refs.account.value.trim());
+      window.location = '/';
+		} else if (_data.isError){
+			this.showToastHandle(_data.message)
+		} else {
+			this.showToastHandle('出错了')
 		}
 	}
 	showToastHandle(text){
@@ -85,6 +122,7 @@ export default class FormContent extends Component {
 							: (<Link to="/login">去登陆</Link>)
 						 }
 					</div>
+					
 					<Toast text={this.state.warnningText} />
 				</div>
 		)

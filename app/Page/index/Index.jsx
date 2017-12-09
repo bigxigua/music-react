@@ -5,6 +5,7 @@ import ChatItem from '../../containers/ChatItem.js'
 import UserCenter from '../../containers/UserCenter.js'
 import InputArea from '../../containers/InputArea.js';
 import ChatBox from '../../containers/ChatBox.js';
+import CreateRoom from '../../containers/createRoom.js';
 
 import '../../scss/index.scss'
 import classNames from 'classnames'
@@ -14,6 +15,7 @@ export default class Index extends Component {
 		super(props);
 		this.deleteItem = this.deleteItem.bind(this);
 		this.setPageState = this.setPageState.bind(this);
+		this.getUserInfo = this.getUserInfo.bind(this);
 	}
 
 	componentDidMount(){
@@ -24,6 +26,9 @@ export default class Index extends Component {
 	}
 	setPageState(state){
 		this.props.setPageState(state)
+	}
+	getUserInfo(account){
+		this.props.getUserInfo(account)
 	}
 	render(){
 		const { currentPage } = this.props;
@@ -55,7 +60,7 @@ export default class Index extends Component {
 			<div className="MessageList-container">
 					{/*聊天列表*/}
 					<div className={ChatListClassNames}>
-							<Head data={MessageListData} setPageState={this.setPageState}></Head>
+							<Head data={MessageListData} setPageState={this.setPageState} getUserInfo={this.getUserInfo}></Head>
 							<div className="ActiveList-container">
 								<SearchBar></SearchBar>
 								{ ListItems }
@@ -67,11 +72,15 @@ export default class Index extends Component {
 					</div>
 					{/*聊天界面*/}
 					<div className={ChatBoxClassNames}>
-							<Head data={MessageListData} setPageState={this.setPageState}></Head>
+							<Head data={MessageListData} setPageState={this.setPageState} getUserInfo={this.getUserInfo}></Head>
 							<div className="ChatBox">
 									<ChatBox />
 							</div>
 							<InputArea />
+					</div>
+				{/*创建群组界面*/}
+				<div className='createRoom-container'>
+							<CreateRoom />
 					</div>
 			</div>
 	)

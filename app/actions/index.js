@@ -1,6 +1,8 @@
 import io from 'socket.io-client'
 
-export const socket = io('http://localhost:3003', {'force new connection': true});
+export const socket = io('http://localhost:3003', {
+	'force new connection': true
+});
 
 export const OPEN_USERINFO_PAGE_STATE = 'OPEN_USERINFO_PAGE_STATE';
 export const OPEN_MESSAGELIST_PAGE_STATE = 'OPEN_MESSAGELIST_PAGE_STATE';
@@ -33,9 +35,30 @@ export const addMessage = (message) => {
 //发送消息
 export const sendMessage = (message) => {
 	return new Promise((resolve, reject) => {
-		 socket.emit('message', message, (body) => {
-		 		console.log(`body ${body}`)
-		 		body.isError ? (reject(body)) : (resolve(body))
-		 })
+		socket.emit('message', message, (body) => {
+			body.isError ? (reject(body)) : (resolve(body))
+		})
 	})
+}
+
+//填充登陆用户信息
+export const setUserCardInfo = (info) => {
+	return {
+		type: 'SET_USER_CARD_INFO',
+		info //登陆的用户信息
+	}
+}
+
+//获取登陆用户信息
+export const getUserInfo = (account) => {
+	return (dispatch) => {
+		return new Promise((resolve, reject) => {
+			socket.emit('getUserInfo', account, (body) => {
+				if(!body.isError){
+					dispatch(setUserCardInfo(body))
+				}
+				body.isError ? (reject(body)) : (resolve(body))
+			})
+		})
+	}
 }

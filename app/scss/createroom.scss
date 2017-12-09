@@ -1,0 +1,43 @@
+@charset "UTF-8";
+@import "./mixin.scss";
+
+.createRoom-container{
+	width: 100%;
+	position: absolute;
+	z-index: 10000;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+.createRoom-conten{
+	width: 100%;
+	background-color: #fefefe
+}
+.createRoom-head{
+	width: 100%;
+	height: 2.8rem;
+	background-color: #00bfa5;
+	overflow: hidden;
+	i,p{
+		float: left;
+		color: white;
+		font-size: 0.5rem;
+		margin-top: 1.3rem;
+	}
+	i{
+		position: relative;
+		margin-left: 1rem;
+		top: 0.1rem;
+	}
+	p{
+		margin-left: 0.2rem;
+	}
+}
+.createRoom-add{
+	width: 100%;
+	background: #fff;
+}
+.createRoom-circle{
+	width: 2rem;
+	height: 2rem;
+	border-radius: 100%;
+}

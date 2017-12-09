@@ -3,8 +3,8 @@ import Head from '../component/Head.jsx'
 
 function mapStateToProps(state) {
 	return {
-		userAvatar: state.setUserInfo.userAvatar,
-		userNickname: state.setUserInfo.userNickname,
+		avatar: state.setUserInfo.avatar,
+		nickname: state.setUserInfo.nickname,
 		onlineState: state.setUserInfo.onlineState
 	}
 }

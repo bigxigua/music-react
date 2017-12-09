@@ -10,6 +10,7 @@ export default class UserCenter extends Component {
 		return this.props.setPageState('USERINFO-HIDE-PAGE')
 	}
 	render(){
+		const { avatar, nickname, account, info } = this.props;
 		return (
 				<div className="UserCenter-container">
 						<div className="UserCenter-top-bg">
@@ -18,16 +19,16 @@ export default class UserCenter extends Component {
 								</div>
 								<img src={TBZ.DEFAULT_USER_BG} />
 								<div className="UserCenter-avatar">
-										<img src={TBZ.DEFAULT_AVATAR} />
+										<img src={avatar ? avatar : TBZ.DEFAULT_AVATAR} />
 								</div>
 								<div className="UserCenter-zan">
 										<p><i className="w-icon-like-o"></i></p>
 										<p>1000</p>
 								</div>
 						</div>
-						<div className="UserCenter-username">UserCenter</div>
+						<div className="UserCenter-username">{ nickname }</div>
 						<div className="UserCenter-sign">
-							<span>fuck you ！！！</span>
+							<span>{ info || '快去设置个性签名吧！！' }</span>
 							<i className="w-icon-edit"></i>
 						</div>
 						<ul className="UserCenter-userInfo">

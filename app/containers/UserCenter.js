@@ -7,7 +7,10 @@ import UserCenter from '../component//UserCenter.jsx'
 
 function mapStateToProps(state) {
 	return {
-		
+		avatar: state.setUserInfo.avatar,
+		nickname: state.setUserInfo.nickname,
+		account: state.setUserInfo.account,
+		info: state.setUserInfo.info,
 	}
 }
 

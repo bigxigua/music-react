@@ -11,6 +11,7 @@
     DEFAULT_AVATAR: require('../images/avatar_user.jpg'),
     DEFAULT_USER_BG: require('../images/user-bg.jpg'),
     DEFAULT_CHATROOM_BG: require('../images/chatroom.jpg'),
+    DEFAULT_URL: 'http://localhost:3003/',
     isIOSDevice: function() {
       var u = navigator.userAgent,
         app = navigator.appVersion;

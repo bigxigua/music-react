@@ -4,10 +4,9 @@ import Index from './Index.jsx'
 
 import { 
 	deleteChatItem,
-	setPageState
+	setPageState,
+	getUserInfo
 } from '../../actions/index.js'
-
-
 
 function mapStateToProps(state) {
 	return {
@@ -20,7 +19,8 @@ function mapDispatchToProps(dispatch) {
 	return {
 		// aaaa: bindActionCreators({setPageState}, dispatch)
 		deleteItem: (index) => {dispatch(deleteChatItem(index))},
-		setPageState: (params) => {dispatch(setPageState(params))}
+		setPageState: (params) => {dispatch(setPageState(params))},
+		getUserInfo: (account) => {dispatch(getUserInfo(account))}
 	}
 }
 

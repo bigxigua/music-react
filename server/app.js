@@ -5,9 +5,12 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+const cors = require('koa-cors');
 
 const index = require('./routes/index')
-const users = require('./routes/users')
+const login = require('./routes/login')
+const register = require('./routes/register')
+const db = require('./models/db-mongo.js')
 
 // error handler
 onerror(app)
@@ -18,6 +21,7 @@ app.use(bodyparser({
 }))
 app.use(json())
 app.use(logger())
+app.use(cors())
 app.use(require('koa-static')(__dirname + '/public'))
 
 app.use(views(__dirname + '/views', {
@@ -34,7 +38,8 @@ app.use(async (ctx, next) => {
 
 // routes
 app.use(index.routes(), index.allowedMethods())
-app.use(users.routes(), users.allowedMethods())
+app.use(login.routes(), login.allowedMethods())
+app.use(register.routes(), register.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
