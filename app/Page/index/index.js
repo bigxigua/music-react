@@ -5,22 +5,23 @@ import Index from './Index.jsx'
 import { 
 	deleteChatItem,
 	setPageState,
-	getUserInfo
+	getUserInfo,
+	getRoomLists
 } from '../../actions/index.js'
 
 function mapStateToProps(state) {
 	return {
 		currentPage: state.setPageState.pageState,
-		lists: state.setChatLists.lists
+		lists: state.roomList.roomLists
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		// aaaa: bindActionCreators({setPageState}, dispatch)
 		deleteItem: (index) => {dispatch(deleteChatItem(index))},
 		setPageState: (params) => {dispatch(setPageState(params))},
-		getUserInfo: (account) => {dispatch(getUserInfo(account))}
+		getUserInfo: (account) => {dispatch(getUserInfo(account))},
+		getRoomLists: (token) => {dispatch(getRoomLists(token))}
 	}
 }
 

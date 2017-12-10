@@ -4,9 +4,17 @@
 .createRoom-container{
 	width: 100%;
 	position: absolute;
-	z-index: 10000;
+	z-index: 10;
 	overflow-x: hidden;
+	background: #fefefe;
 	overflow-y: scroll;
+	height: 100vh;
+	-webkit-transition: all .5s cubic-bezier(.23,1,.32,1) 0ms;
+  transition: all .5s cubic-bezier(.23,1,.32,1) 0ms;
+  @include transform(translateX(-100%));
+}
+.createRoom-container-show{
+	@include transform(translateX(0));
 }
 .createRoom-conten{
 	width: 100%;
@@ -17,11 +25,20 @@
 	height: 2.8rem;
 	background-color: #00bfa5;
 	overflow: hidden;
+	div{
+		-webkit-transition: all .5s cubic-bezier(.23,1,.32,1) 100ms;
+  	transition: all .5s cubic-bezier(.23,1,.32,1) 100ms;
+  	@include transform(translateX(-3rem));
+	}
+	.createRoom-head-slide{
+  	@include transform(translateX(0));
+	}
 	i,p{
 		float: left;
 		color: white;
 		font-size: 0.5rem;
 		margin-top: 1.3rem;
+		font-weight: lighter;
 	}
 	i{
 		position: relative;
@@ -34,10 +51,67 @@
 }
 .createRoom-add{
 	width: 100%;
-	background: #fff;
+	background: #fefefe;
+	overflow: hidden;
 }
 .createRoom-circle{
-	width: 2rem;
-	height: 2rem;
+	width: 3rem;
+	height: 3rem;
 	border-radius: 100%;
+	border: 1px dashed gray;
+	margin: auto;
+	margin-top: 1rem;
+	position: relative;
+}
+.createRoom-line-heng,
+.createRoom-line-zong{
+	width: 2rem;
+	height: 2px;
+	background: gray;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	@include transform(translate3d(-50%,-50%,0));
+}
+.createRoom-line-zong{
+	@include transform(translate3d(-50%,-50%,0) rotate(90deg));
+}
+
+.createRoom-input{
+	width: 100%;
+	background: #fefefe;
+	width: 80%;
+	margin: auto;
+	margin-top: 1rem;
+	border-bottom: 2px solid #00bfa5;
+	position: relative;
+	input{
+		width: 100%;
+		text-align: center;
+		outline: none;
+		font-size: 0.35rem;
+	}
+	span{
+		position: absolute;
+		right: 0;
+		top: 0;
+		font-size: 0.4rem;
+		color: #00bfa5;
+	}
+}
+.createRoom-submit{
+	width: 80%;
+	height: 1.2rem;
+	border-radius: 5px;
+	background: #eee;
+	text-align: center;
+	line-height: 1.2rem;
+	font-size: 0.5rem;
+	margin: auto;
+	margin-top: 4rem;
+	color: gray;
+}
+.createRoom-submit-true{
+	background: #00bfa5;
+	color: white;
 }

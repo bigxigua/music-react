@@ -12,7 +12,6 @@
   "license": "ISC",
   "devDependencies": {
     "amfe-flexible": "^2.2.1",
-    "animate.css": "^3.5.2",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-runtime": "^6.23.0",

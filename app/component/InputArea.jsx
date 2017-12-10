@@ -15,9 +15,9 @@ export default class InputArea extends Component {
 	sendMessage(){
 		const timestamp = new Date().getTime();
 		let message = {
-			roomID: this.props.roomID || 1,
+			roomName: this.props.currentRoomName,
 			type: 'textMessage',
-			nickname: this.props.nickname,
+			account: localStorage.getItem('account'),
 			avatar: this.props.avatar,
 			content: this.state.content,
 			time: timestamp //时间戳

@@ -3,6 +3,7 @@ import setPageState from './setPageState.js';
 import setUserInfo from './setUserInfo.js';
 import setChatLists from './setChatLists.js';
 import setChatRoomInfo from './setChatRoomInfo.js';
+import roomList from './roomList.js';
 import message from './message.js';
 
 const rootReducer = combineReducers({
@@ -10,7 +11,8 @@ const rootReducer = combineReducers({
 	setUserInfo,
 	setChatLists,
 	setChatRoomInfo,
-	message
+	message,
+	roomList
 })
 
 export default rootReducer

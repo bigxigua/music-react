@@ -3,6 +3,7 @@ const User = require('../models/user-mongo.js');
 const bluebird = require('bluebird');
 const bcrypt = require('bcrypt');
 const config = require('../config/init.js');
+const util = require('../util/util.js');
 const jwt = require('jsonwebtoken') //jsp 基于token的身份验证
 
 module.exports = {
@@ -11,11 +12,10 @@ module.exports = {
 		let hasRoom = await Room.findOne({name: info.roomName});
 		//用户创建房间数量限制（待处理）
 		if (user && !hasRoom) {
-			let room = new Room(Object.assign({},{
-					{name: info.roomName}
-					{createrUser: user._id, users: [users._id]},
-					{avatar: ''}
-			}))
+			let room = new Room(Object.assign({},
+					{name: info.roomName, createTime: Date.now()},
+					{createrUser: user._id, users: [user._id], avatar: '', createrUserName: user.nickname}
+			))
 			user.rooms.push(room._id);
 			user.save();
 			room.save();
@@ -26,7 +26,9 @@ module.exports = {
 				roomInfo: {
 					roomName: info.roomName,
 					avatar: room.avatar,
-					isPrivate: false
+					isPrivate: false,
+					createTime: room.createTime,
+					createrUserName: room.createrUserName
 				}
 			}
 		} else {
@@ -37,4 +39,19 @@ module.exports = {
 			}
 		}
 	},
+	getRoomLists: async (token) => {
+		let verifyResult = jwt.verify(token, config.JWT_KEY);
+		if (verifyResult) {
+			let user = await User.findOne({account: verifyResult.user}).populate('rooms');
+			if (user) {
+				let userRoomLists = util.getRoomLists(user.rooms);
+				return userRoomLists
+			}
+		} else {
+			return {
+				isError: true,
+				message: 'token解析失败'
+			}
+		}
+	}
 }

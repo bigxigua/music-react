@@ -11,6 +11,25 @@ const index = require('./routes/index')
 const login = require('./routes/login')
 const register = require('./routes/register')
 const db = require('./models/db-mongo.js')
+const Room = require('./models/room-mongo.js')
+const config = require('./config/init.js')
+
+
+const initRoom = async function () {
+	let initRoom = await Room.findOne({ name:  config.INIT_ROOM});
+	if (!initRoom) {
+		let room = new Room({
+			info: config.INIT_ROOM_INFO,
+			name: config.INIT_ROOM
+		})
+		await room.save();
+	} else {
+		console.log('初始房间已存在')
+	}
+}
+initRoom().catch( (err) => {
+	console.log(err, '创建初始房间时出错')
+})
 
 // error handler
 onerror(app)

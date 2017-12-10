@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import ChatItem from '../component/ChatItem.jsx'
-
+import { setUserCurRoom } from '../actions/index.js'
 
 
 function mapStateToProps(state) {
@@ -11,7 +11,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		// deleteItem: (index) => {dispatch(deleteChatItem(index))}
+		setUserCurRoom: (roomName) => {dispatch(setUserCurRoom(roomName))}
 	}
 }
 

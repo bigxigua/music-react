@@ -16,6 +16,8 @@ export default class Index extends Component {
 		this.deleteItem = this.deleteItem.bind(this);
 		this.setPageState = this.setPageState.bind(this);
 		this.getUserInfo = this.getUserInfo.bind(this);
+		this.getRoomLists = this.getRoomLists.bind(this);
+		this.getRoomLists();
 	}
 
 	componentDidMount(){
@@ -30,31 +32,34 @@ export default class Index extends Component {
 	getUserInfo(account){
 		this.props.getUserInfo(account)
 	}
+	getRoomLists(){
+		this.props.getRoomLists(localStorage.getItem('token'))
+	}
 	render(){
 		const { currentPage } = this.props;
 		const MessageListData = {isChatList: currentPage === 'CHATROOM-PAGE'};
 		const ListItems = this.props.lists.map((item, index) =>{
 				return (<ChatItem 
 					data={item} 
-					key={item.Index} 
-					index={item.Index} 
+					key={new Date(item.createTime).getTime()}
 					deleteItem={this.deleteItem} 
 					setPageState={this.setPageState} >
 					</ChatItem>)
 		})
 		const ChatListClassNames = classNames({
-			'page-container animated': true,
-			'bounceOutLeft': currentPage === 'CHATROOM-PAGE',
-			'bounceInLeft': currentPage === 'MESSAGELIST-PAGE',
+			'page-container animated': true
 		})
 		const UserCenterClassNames = classNames({
 			'page-container-center animated': true,
-			'bounceInLeft': currentPage === 'USERINFO-PAGE',
-			'bounceOutLeft': currentPage === 'USERINFO-HIDE-PAGE',
-			'page-container-hide': currentPage !== 'USERINFO-HIDE-PAGE',
+			'page-container-show': currentPage === 'USERINFO-PAGE'
+		})
+		const CreateRoomClassNames = classNames({
+			'createRoom-container': true,
+			'createRoom-container-show': currentPage == 'CREATE-ROOM-PAGE'
 		})
 		const ChatBoxClassNames = classNames({
-			'page-container-chat animated': true
+			'page-container-chat animated': true,
+			'page-container-show': currentPage == 'CHATROOM-PAGE'
 		})
 		return (
 			<div className="MessageList-container">
@@ -79,9 +84,9 @@ export default class Index extends Component {
 							<InputArea />
 					</div>
 				{/*创建群组界面*/}
-				<div className='createRoom-container'>
+				<div className={CreateRoomClassNames}>
 							<CreateRoom />
-					</div>
+				</div>
 			</div>
 	)
 	}

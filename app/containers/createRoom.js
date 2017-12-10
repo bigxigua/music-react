@@ -1,17 +1,18 @@
 import { connect } from 'react-redux'
 import createRoom from '../component/createRoom.jsx'
-import { addMessage } from '../actions/index.js'
+import { setPageState, createRoomAction } from '../actions/index.js'
 
 
 function mapStateToProps(state) {
 	return {
-		
+		currentPage: state.setPageState.pageState
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		// addMessage: (params) => { dispatch(addMessage(params)) }
+		setPageState: (params) => {dispatch(setPageState(params))},
+		createRoomAction: (info) => {dispatch(createRoomAction(info))}
 	}
 }
 

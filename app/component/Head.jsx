@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import classNames from 'classnames'
-import '../scss/head.scss'
+import classNames from 'classnames';
+import '../scss/head.scss';
 
 const MessageIcon = () => {
 	return (
@@ -50,6 +50,7 @@ export default class Head extends Component {
 		this.showChatLists = this.showChatLists.bind(this);
 		this.getUserInfo = this.getUserInfo.bind(this);
 		this.toggleSettingCard = this.toggleSettingCard.bind(this);
+		this.gotoCreateRoom = this.gotoCreateRoom.bind(this);
 		this.state = {
 			showSettingCard: false,
 			initAnimate: false
@@ -61,6 +62,9 @@ export default class Head extends Component {
 	showChatLists(){
 		return this.props.setPageState('MESSAGELIST-PAGE')
 	}
+	gotoCreateRoom(){
+		return this.props.setPageState('CREATE-ROOM-PAGE')
+	}
 	getUserInfo(){
 		return this.props.getUserInfo(localStorage.getItem('account'))
 	}
@@ -69,7 +73,6 @@ export default class Head extends Component {
 		this.setState({
 			 initAnimate: true
 		})
-		console.log(showSettingCard)
 		!this.props.data.isChatList ? (this.setState({
 			showSettingCard: !showSettingCard
 		})) : {};
@@ -81,10 +84,7 @@ export default class Head extends Component {
 		const {showSettingCard, initAnimate} = this.state;
 		const settingCardClassNames = classNames({
 			'SettingCard-container animated': true,
-			'hideCard': !initAnimate,
-			'bounceInRight': showSettingCard && initAnimate,
-			'bounceOutRight': !showSettingCard && initAnimate,
-			
+			'show-SettingCard': showSettingCard
 		})
 		const iconList = isChatList ?
 											( <div><SearchIcon /><UserSettingIcon /><MoreIcon toggleSettingCard={this.toggleSettingCard} /></div>):
@@ -104,8 +104,8 @@ export default class Head extends Component {
 									<div>{ Element }</div>
 									<div className={settingCardClassNames}>
 										<ul>
-												<li>创建群组</li>
-												<li>用户资料</li>
+												<li onClick={this.gotoCreateRoom}>创建群组</li>
+												<li onClick={this.showUserCenter}>用户资料</li>
 												<li>设置</li>
 												<li>切换账号</li>
 										</ul>

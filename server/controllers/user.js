@@ -1,4 +1,5 @@
 const User = require('../models/user-mongo.js');
+const Room = require('../models/room-mongo.js');
 const bluebird = require('bluebird');
 const bcrypt = require('bcrypt');
 const config = require('../config/init.js');
@@ -11,12 +12,18 @@ const _genJwt = (account) => {
 				}, config.JWT_KEY)
 }
 
+var ERROR = {
+	isError: true,
+	message: '服务器出错了...'
+}
+
 module.exports = {
 	createUser: async (account, password, nickname) => {
 		let salt = await bluebird.promisify(bcrypt.genSalt)(10);
 		password = await bluebird.promisify(bcrypt.hash)(password, salt);
 		let user = await User.findOneUser({ account: account });
-		if(user) {
+		let room = await Room.findOne({ name: config.INIT_ROOM }); 
+		if(user && room) {
 			return {isError: true, message: '用户已存在'}
 		}
 		let newUser = await User.create({
@@ -26,9 +33,15 @@ module.exports = {
 			avatar: '',
 			sex: '未知',
 			info: '',
-			onlineState: 1
+			onlineState: 1,
+			rooms: [room._id]
 		})
-		return {token: _genJwt(account)}
+		if (newUser) {
+			room.users.push(newUser._id);
+			await room.save();
+			return {token: _genJwt(account)}
+		}
+		return ERROR;
 	},
 	verifyUser: async (account, password) => {
 		let user = await User.findOneUser({ account: account });
@@ -38,7 +51,6 @@ module.exports = {
 				message: '用户不存在'
 			}
 		}
-		console.log(user)
 		let compareResult = bluebird.promisify(bcrypt.compare)(password, user.password);
 		if(compareResult) {
 			return {token: _genJwt(account)}

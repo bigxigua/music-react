@@ -72,13 +72,15 @@
 .SettingCard-container{
 	position: absolute;
 	width: 5em;
-	left: 4rem;
-  top: 1rem;
+	left: 6rem;
+  top: 1.2rem;
 	background: #fff;
   border: 1px solid #fefefe;
   border-radius: 3px;
   box-shadow: 0 1px 6px rgba(0,0,0,.117647), 0 1px 4px rgba(0,0,0,.117647);
   z-index: 10;
+  @include transform(translate3d(6rem,0,0));
+  opacity: 0;
 	ul{
 		width: 100%;
 		li{
@@ -86,9 +88,13 @@
 			color: #666;
 			text-align: left;
 			font-size: 0.35rem;
+			&:hover{
+				background: #eee;
+			}
 		}
 	}
 }
-.hideCard{
-	opacity: 0;
+.show-SettingCard{
+	opacity: 1;
+	@include transform(translate3d(0,0,0));
 }

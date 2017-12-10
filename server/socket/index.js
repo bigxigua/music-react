@@ -5,7 +5,7 @@ const room = require('../controllers/room.js');
 
 const callbackError = function (cb, err) {
 	cb({
-		isError: true,
+		isError: true, 
 		errMsg: '服务器出错'
 	})
 }
@@ -32,6 +32,15 @@ module.exports = function (io) {
 			room.createRoom(socket, roomInfo).then((info) => {
 				callbackSuccess(cb, info)
 			}).catch((err) => {
+				console.log(err)
+				callbackError(cb, err)
+			})
+		});
+		socket.on('getRoomLists', (token, cb) => {
+			room.getRoomLists(token).then((lists) => {
+				callbackSuccess(cb, lists)
+			}).catch((err) => {
+				console.log(err)
 				callbackError(cb, err)
 			})
 		});

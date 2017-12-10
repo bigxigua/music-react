@@ -11,6 +11,7 @@ export default class ChatBox extends Component {
 	}
 	listenMessage(){
 		socket.on('newMessage', (message) => {
+			console.log(message)
 			this.props.addMessage(message)
 		})
 	}

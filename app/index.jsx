@@ -13,7 +13,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 import './scss/main.scss'
 import 'amfe-flexible'
-import '../node_modules/animate.css/animate.min.css'
+// import '../node_modules/animate.css/animate.min.css'
 import '../node_modules/uiw-iconfont/fonts/w-iconfont.css'
 
 import Bundle from './Page/bundle.jsx'

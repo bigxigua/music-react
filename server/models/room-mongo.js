@@ -7,6 +7,10 @@ const room = new Schema({
 		required: true
 	}, //房间名
 	isPrivate: Boolean, //私聊
+	histories: [{
+		type: Schema.Types.ObjectId,
+		ref: 'history'
+	}],
 	avatar: String, //房间头像
 	users: [{
 		type: Schema.Types.ObjectId,
@@ -16,6 +20,7 @@ const room = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'user'
 	}, //房主
+	createrUserName: String,
 	lastMessage: String, //最后的消息
 	roomInfo: {
 		type: String,
@@ -27,13 +32,13 @@ const room = new Schema({
 	} //房间创建时间
 });
 
-room.statics.findAll = function (opt = {}) {
-	return new Promise((resolve,reject)=>{
-        this.find(opt).populate('owner').exec(function (err,data) {
-            if(err) reject(err);
-            resolve(data);
-        })
-   });
+room.statics.findAll = function(opt = {}) {
+	return new Promise((resolve, reject) => {
+		this.find(opt).populate('owner').exec(function(err, data) {
+			if (err) reject(err);
+			resolve(data);
+		})
+	});
 }
 
-module.exports = mongoose.model('room',room);
+module.exports = mongoose.model('room', room);

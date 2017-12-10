@@ -19,7 +19,8 @@ export default class ChatItem extends Component {
 		this.listenTransitionEnd = this.listenTransitionEnd.bind(this);
 	}
 	setPageStateToChatRoom(){
-		return this.props.setPageState('CHATROOM-PAGE')
+		this.props.setPageState('CHATROOM-PAGE');
+		this.props.setUserCurRoom(this.props.data.roomName);
 	}
 	formatTime(time){
 		const _time = time.replace(/-/g, '-');
@@ -82,10 +83,10 @@ export default class ChatItem extends Component {
 				<div className="ChatListItem-Item" ref="oDragDiv" onClick={this.setPageStateToChatRoom}>
 						<img src={info.chatAvatar || DEFAULT_GROUP_AVATAR} className="ChatListItem-avatar"/>
 						<div className="ChatListItem-msg-box">
-								<p>{info.name}</p>
-								<p>{info.lastedSpeakerName}: {info.lastedSpeakeWord}</p>
+								<p>{info.roomName}</p>
+								<p>{info.lastedSpeakerName + ' : ' + info.lastedSpeakeWord}</p>
 						</div>
-						<div className="ChatListItem-time">{this.formatTime(info.lastedTime)}</div>
+						<div className="ChatListItem-time">{this.formatTime(info.createTime)}</div>
 						{unReadMessage}
 				</div>
 				<div className="ChatListItem-hidden-element">
