@@ -4,14 +4,15 @@ import '../scss/messagelist.scss'
 
 export default class MessageList extends Component {
 	constructor(props){
-		super(props);
+		super(props); 
 	}
 	render(){
 		const info = this.props.data;
+		console.log(this.props.data)
 		return ( 
 			<div className="MessageList-container">
 				<div className="MessageList-userinfo">
-					<img src={info.avatar} className="MessageList-avatar" />
+					<img src={info.avatar || TBZ.DEFAULT_AVATAR } className="MessageList-avatar" />
 				</div>
 				<div className="MessageList-content">
 					<p>{ info.nickname }</p>

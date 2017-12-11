@@ -11,7 +11,7 @@ export default class ChatBox extends Component {
 	}
 	listenMessage(){
 		socket.on('newMessage', (message) => {
-			console.log(message)
+			console.log(message) 
 			this.props.addMessage(message)
 		})
 	}
@@ -19,14 +19,13 @@ export default class ChatBox extends Component {
 		const ChatBoxStyle = {
 			backgroundImage: 'url(' + this.props.chatRoomBackGround + ')'
 		}
-		const MessageLists = this.props.messageLists.map((item) => {
-			return (<MessageList key={item.time} data={item}> </MessageList>)
-		})
+		// const MessageLists = this.props.messageLists.map((item) => {
+		// 	return (<MessageList key={item.time} data={item}> </MessageList>)
+		// })
 		return (
 			<div className="ChatBox-container" style={ChatBoxStyle}>
 				<div className="MessageContainer-content">
-					{ MessageLists }
-					
+					{/*{ MessageLists }*/}
 				</div>
 			</div>
 		)

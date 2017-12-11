@@ -17,11 +17,12 @@ export default class Index extends Component {
 		this.setPageState = this.setPageState.bind(this);
 		this.getUserInfo = this.getUserInfo.bind(this);
 		this.getRoomLists = this.getRoomLists.bind(this);
+		this.getLatestMessage = this.getLatestMessage.bind(this);
 		this.getRoomLists();
 	}
 
 	componentDidMount(){
-		// console.log(this.props)
+		// console.log(this.props.histories)
 	}
 	deleteItem(index){
 		this.props.deleteItem(index);
@@ -35,12 +36,27 @@ export default class Index extends Component {
 	getRoomLists(){
 		this.props.getRoomLists(localStorage.getItem('token'))
 	}
+	getLatestMessage(roomName){
+		console.log(this.props.histories)
+		let histories = this.props.histories;
+		let roomHistories = [];
+		if(Array.isArray(histories)) {
+			histories.map((item) => {
+				if(roomName = item.name){
+					roomHistories = item.histories
+				}
+			})
+		}
+		return TBZ.sortDown(roomHistories, 'timestamp')[0];
+	}
 	render(){
 		const { currentPage } = this.props;
 		const MessageListData = {isChatList: currentPage === 'CHATROOM-PAGE'};
 		const ListItems = this.props.lists.map((item, index) =>{
+				let latestMessage = this.getLatestMessage(item.roomName);
 				return (<ChatItem 
-					data={item} 
+					data={item}
+					latestMessage={latestMessage}
 					key={new Date(item.createTime).getTime()}
 					deleteItem={this.deleteItem} 
 					setPageState={this.setPageState} >

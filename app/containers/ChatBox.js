@@ -7,7 +7,7 @@ function mapStateToProps(state) {
 	return {
 		chatRoomBackGround: state.setChatRoomInfo.chatRoomBackGround,
 		messageLists: state.message.messageLists
-	}
+	} 
 }
 
 function mapDispatchToProps(dispatch) {

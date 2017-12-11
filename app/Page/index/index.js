@@ -12,7 +12,8 @@ import {
 function mapStateToProps(state) {
 	return {
 		currentPage: state.setPageState.pageState,
-		lists: state.roomList.roomLists
+		lists: state.roomList.roomLists,
+		histories: state.message.messageLists
 	}
 }
 

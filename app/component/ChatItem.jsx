@@ -19,16 +19,16 @@ export default class ChatItem extends Component {
 		this.listenTransitionEnd = this.listenTransitionEnd.bind(this);
 	}
 	setPageStateToChatRoom(){
+		const roomName = this.props.data.roomName;
 		this.props.setPageState('CHATROOM-PAGE');
-		this.props.setUserCurRoom(this.props.data.roomName);
+		this.props.setUserCurRoom(roomName);
 	}
 	formatTime(time){
-		const _time = time.replace(/-/g, '-');
-		const hour = new Date(_time).getHours();
+		const hour = new Date(time).getHours();
 		const chatTime = hour <= 6 ? '凌晨' 
 		       : hour <= 9 ? '清晨' : hour <= 12 ? '上午' : hour <= 18 ? '下午' 
 		       : hour <= '24' ? '晚上' : '外太空' ;
-		return `${chatTime}   ${hour}:${new Date(_time).getMinutes()}`
+		return `${chatTime}   ${hour}:${new Date(time).getMinutes()}`
 	}
 
 	dragHandle(element){
@@ -76,6 +76,7 @@ export default class ChatItem extends Component {
 
 	render(){
 		const info = this.props.data;
+		const latestMessage = this.props.latestMessage || {owner: {}};
 		const oContainerName = 'oContainer' + info.Index;
 		const unReadMessage = info.unreadNumber > 0 ? (<div className="ChatListItem-msg-number">{info.unreadNumber}</div>) : null;
 		return (
@@ -84,9 +85,9 @@ export default class ChatItem extends Component {
 						<img src={info.chatAvatar || DEFAULT_GROUP_AVATAR} className="ChatListItem-avatar"/>
 						<div className="ChatListItem-msg-box">
 								<p>{info.roomName}</p>
-								<p>{info.lastedSpeakerName + ' : ' + info.lastedSpeakeWord}</p>
+								<p>{latestMessage.owner.nickname + ' : ' + latestMessage.content}</p>
 						</div>
-						<div className="ChatListItem-time">{this.formatTime(info.createTime)}</div>
+						<div className="ChatListItem-time">{this.formatTime(latestMessage.timestamp)}</div>
 						{unReadMessage}
 				</div>
 				<div className="ChatListItem-hidden-element">

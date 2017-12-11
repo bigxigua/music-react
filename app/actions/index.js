@@ -96,7 +96,8 @@ export const getRoomLists = (token) => {
 		return new Promise((resolve, reject) => {
 			socket.emit('getRoomLists', token, (body) => {
 				if(!body.isError){
-					dispatch(_getRoomLists(body))
+					dispatch(_getRoomLists(body.userRoomLists))
+					dispatch(getAllRoomHistories(body.histories))
 				}
 				body.isError ? (reject(body)) : (resolve(body))
 			})
@@ -111,3 +112,12 @@ export const setUserCurRoom = (roomName) => {
 		roomName
 	}
 }
+
+//获取所有房间的聊天记录
+export const getAllRoomHistories = (histories) => {
+	return {
+		type: 'GET_HISTORY_MESSAGE',
+		histories
+	}
+}
+

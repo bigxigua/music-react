@@ -1,5 +1,6 @@
 const Room = require('../models/room-mongo.js');
 const User = require('../models/user-mongo.js');
+const History = require('../models/history-mongo.js');
 const bluebird = require('bluebird');
 const bcrypt = require('bcrypt');
 const config = require('../config/init.js');
@@ -45,7 +46,13 @@ module.exports = {
 			let user = await User.findOne({account: verifyResult.user}).populate('rooms');
 			if (user) {
 				let userRoomLists = util.getRoomLists(user.rooms);
-				return userRoomLists
+				let roomNameArr = util.getRoomNameArr(user.rooms);
+				let histories = await History.find({roomName: {$in: roomNameArr}}).populate('owner');
+				let historiesArr = util.getAllRoomHistorys(histories);
+				return {
+					userRoomLists:userRoomLists,
+					histories: historiesArr
+				}
 			}
 		} else {
 			return {

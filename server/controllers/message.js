@@ -18,7 +18,7 @@ module.exports = {
 			roomName: message.roomName,
 			content: message.content.slice(0,200),
 			type: message.type,
-			timestamp: Date.now()
+			timestamp: Date.now() 
 		}
 		let user = await User.findOneUser({ account: message.account });
 		if(user) {
@@ -29,9 +29,7 @@ module.exports = {
 				room.histories.push(newHistory._id);
 				await newHistory.save();
 				await room.save();
-				console.log(message.roomName)
-				// socket.broadcast.to(message.roomName).emit('newMessage', message)
-				socket.broadcast.emit('newMessage', message)
+				socket.broadcast.to(message.roomName).emit('newMessage', message);
 				console.log('----------------------成功存储消息')
 			} else {
 				callbackError(cb, '房间不存在');

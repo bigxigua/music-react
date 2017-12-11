@@ -12,6 +12,17 @@
     DEFAULT_USER_BG: require('../images/user-bg.jpg'),
     DEFAULT_CHATROOM_BG: require('../images/chatroom.jpg'),
     DEFAULT_URL: 'http://localhost:3003/',
+    sortUp: function (arr, key) {
+      return arr.sort(function (a, b) {
+
+        return a[key]-b[key]
+      })
+    },
+    sortDown: function (arr, key) {
+      return arr.sort(function (a, b) {
+        return b[key] - a[key];
+      })
+    },
     isIOSDevice: function() {
       var u = navigator.userAgent,
         app = navigator.appVersion;
