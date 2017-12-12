@@ -3,12 +3,22 @@ import {
 } from '../actions/index.js';
 
 let defaultState = {
-	messageLists: {}
+	messageLists: []
 }
 
 function addMessage(state,message) {
 	const _messageLists = [].concat(state.messageLists);
-	_messageLists.push(message);
+	_messageLists.map((item) => {
+		if(item.name == message.roomName) {
+			item.histories.push(message)
+		}
+	})
+	if(message.isSelf) {
+		_messageLists.push({
+			name: message.roomName,
+			histories: [message]
+		})
+	}
 	return Object.assign({}, state, {messageLists: _messageLists})
 }
 

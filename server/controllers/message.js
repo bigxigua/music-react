@@ -29,7 +29,12 @@ module.exports = {
 				room.histories.push(newHistory._id);
 				await newHistory.save();
 				await room.save();
+				message.timestamp = Date.now();
+				message.nickname = user.nickname;
+				message.owner = user;
 				socket.broadcast.to(message.roomName).emit('newMessage', message);
+				message.isSelf = true;
+				socket.emit('newMessage', message);
 				console.log('----------------------成功存储消息')
 			} else {
 				callbackError(cb, '房间不存在');

@@ -4,7 +4,7 @@ import Hammer from 'hammerjs'
 
 import { getCss } from '../global/util.js'
 
-
+ 
 const DEFAULT_GROUP_AVATAR = require('../images/download.svg')
 const EXPAND_CLASS = 'ChatListItem-Item-expand'
 
@@ -76,6 +76,7 @@ export default class ChatItem extends Component {
 
 	render(){
 		const info = this.props.data;
+		// console.log(info)
 		const latestMessage = this.props.latestMessage || {owner: {}};
 		const oContainerName = 'oContainer' + info.Index;
 		const unReadMessage = info.unreadNumber > 0 ? (<div className="ChatListItem-msg-number">{info.unreadNumber}</div>) : null;

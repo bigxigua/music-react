@@ -37,12 +37,11 @@ export default class Index extends Component {
 		this.props.getRoomLists(localStorage.getItem('token'))
 	}
 	getLatestMessage(roomName){
-		console.log(this.props.histories)
 		let histories = this.props.histories;
 		let roomHistories = [];
 		if(Array.isArray(histories)) {
 			histories.map((item) => {
-				if(roomName = item.name){
+				if(roomName === item.name){
 					roomHistories = item.histories
 				}
 			})
@@ -53,10 +52,10 @@ export default class Index extends Component {
 		const { currentPage } = this.props;
 		const MessageListData = {isChatList: currentPage === 'CHATROOM-PAGE'};
 		const ListItems = this.props.lists.map((item, index) =>{
-				let latestMessage = this.getLatestMessage(item.roomName);
+				item.latestMessage = this.getLatestMessage(item.roomName);
 				return (<ChatItem 
 					data={item}
-					latestMessage={latestMessage}
+					latestMessage={item.latestMessage}
 					key={new Date(item.createTime).getTime()}
 					deleteItem={this.deleteItem} 
 					setPageState={this.setPageState} >

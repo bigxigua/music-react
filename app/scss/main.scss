@@ -128,7 +128,9 @@ body, button, input, select, textarea {
 
 .container{
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+
 }
 .container-box{
     width: 100%;

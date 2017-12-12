@@ -6,7 +6,8 @@ import { addMessage } from '../actions/index.js'
 function mapStateToProps(state) {
 	return {
 		chatRoomBackGround: state.setChatRoomInfo.chatRoomBackGround,
-		messageLists: state.message.messageLists
+		messageLists: state.message.messageLists,
+		currentRoomName: state.setUserInfo.currentRoomName
 	} 
 }
 

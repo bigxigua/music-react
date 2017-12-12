@@ -18,9 +18,7 @@ export default class InputArea extends Component {
 			roomName: this.props.currentRoomName,
 			type: 'textMessage',
 			account: localStorage.getItem('account'),
-			avatar: this.props.avatar,
-			content: this.state.content,
-			time: timestamp //时间戳
+			content: this.state.content
 		}
 		return sendMessage(message);
 	}
