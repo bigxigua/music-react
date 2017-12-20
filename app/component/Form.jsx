@@ -9,7 +9,7 @@ const Toast = (props) => {
 	const toastClass = classNames({
 		'Toast-container animated': true,
 		'hideToast': text == '',
-		'slideInUp': text !== ''
+		'showToast': text !== ''
 	})
 	return (
 		<div className={toastClass}>

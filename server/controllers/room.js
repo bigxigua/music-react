@@ -41,14 +41,15 @@ module.exports = {
 		}
 	},
 	getRoomLists: async (token) => {
-		let verifyResult = jwt.verify(token, config.JWT_KEY);
+		let verifyResult = jwt.verify(token, config.JWT_KEY); 
 		if (verifyResult) {
 			let user = await User.findOne({account: verifyResult.user}).populate('rooms');
 			if (user) {
 				let userRoomLists = util.getRoomLists(user.rooms);
 				let roomNameArr = util.getRoomNameArr(user.rooms);
-				let histories = await History.find({roomName: {$in: roomNameArr}}).populate('owner');
+				let histories = await History.find({roomName: {$in: roomNameArr} }).populate('owner');
 				let historiesArr = util.getAllRoomHistorys(histories);
+				console.log(historiesArr)
 				return {
 					userRoomLists:userRoomLists,
 					histories: historiesArr

@@ -11,8 +11,7 @@ const user = new Schema({
 	onlineState: Number,
 	rooms: [{
 		type: Schema.Types.ObjectId, //房间号以room._id表示
-		ref: 'room'
-
+		ref: 'room' //关联room表
 	}]
 })
 

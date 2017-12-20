@@ -24,6 +24,6 @@ function mapDispatchToProps(dispatch) {
 		getUserInfo: (account) => {dispatch(getUserInfo(account))},
 		getRoomLists: (token) => {dispatch(getRoomLists(token))}
 	}
-}
+} 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)

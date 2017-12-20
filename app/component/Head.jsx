@@ -57,13 +57,19 @@ export default class Head extends Component {
 		}
 	}
 	showUserCenter(){
-		return this.props.setPageState('USERINFO-PAGE')
+		this.props.setPageState('USERINFO-PAGE');
+		this.setState({
+			showSettingCard: false
+		})
 	}
 	showChatLists(){
-		return this.props.setPageState('MESSAGELIST-PAGE')
+		return this.props.setPageState('MESSAGELIST-PAGE');
 	}
 	gotoCreateRoom(){
-		return this.props.setPageState('CREATE-ROOM-PAGE')
+		this.props.setPageState('CREATE-ROOM-PAGE');
+		this.setState({
+			showSettingCard: false
+		})
 	}
 	getUserInfo(){
 		return this.props.getUserInfo(localStorage.getItem('account'))

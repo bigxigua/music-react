@@ -24,6 +24,9 @@ export default class ChatItem extends Component {
 		this.props.setUserCurRoom(roomName);
 	}
 	formatTime(time){
+		if(!time) {
+			time = new Date(this.props.data.createTime);
+		}
 		const hour = new Date(time).getHours();
 		const chatTime = hour <= 6 ? '凌晨' 
 		       : hour <= 9 ? '清晨' : hour <= 12 ? '上午' : hour <= 18 ? '下午' 
@@ -76,8 +79,7 @@ export default class ChatItem extends Component {
 
 	render(){
 		const info = this.props.data;
-		// console.log(info)
-		const latestMessage = this.props.latestMessage || {owner: {}};
+		const latestMessage = this.props.latestMessage || {};
 		const oContainerName = 'oContainer' + info.Index;
 		const unReadMessage = info.unreadNumber > 0 ? (<div className="ChatListItem-msg-number">{info.unreadNumber}</div>) : null;
 		return (
@@ -86,7 +88,7 @@ export default class ChatItem extends Component {
 						<img src={info.chatAvatar || DEFAULT_GROUP_AVATAR} className="ChatListItem-avatar"/>
 						<div className="ChatListItem-msg-box">
 								<p>{info.roomName}</p>
-								<p>{latestMessage.owner.nickname + ' : ' + latestMessage.content}</p>
+								<p>{latestMessage.owner ? (latestMessage.owner.nickname + ' : ' + latestMessage.content) : '暂未有人发言'}</p>
 						</div>
 						<div className="ChatListItem-time">{this.formatTime(latestMessage.timestamp)}</div>
 						{unReadMessage}

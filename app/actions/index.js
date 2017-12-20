@@ -63,7 +63,7 @@ export const getUserInfo = (account) => {
 export const _createRoom = (info) => {
 	return {
 		type: 'ADD_ROOM_LISTS',
-		info
+		info 
 	}
 }
 

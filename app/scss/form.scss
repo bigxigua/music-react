@@ -78,9 +78,8 @@
     border-radius: 0.1rem;
     position: fixed;
     bottom: 1rem;
-    left: 10%;
-    @include transform(translateX(-50%));
+    @include transform(translate3d(-110%, 0, 0));
 }
-.hideToast{
-    display: none;
+.showToast{
+    @include transform(translate3d(10%, 0, 0));
 }
