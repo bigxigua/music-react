@@ -9,6 +9,21 @@
 	height: 2rem;
 	position: relative;
 }
+.MessageList-container-other{
+	.MessageList-userinfo{
+		float: left;
+		margin-left: 0.2rem;
+	}
+	.MessageList-content{
+		float: left;
+		p{
+			text-align: left;
+		}
+		.MessageList-message{
+			float: left;
+		}
+	}
+}
 .MessageList-userinfo{
 	float: right;
 	margin-right: 0.1rem;

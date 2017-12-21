@@ -8,16 +8,9 @@ let defaultState = {
 
 function addMessage(state,message) {
 	const _messageLists = [].concat(state.messageLists);
-	_messageLists.map((item) => {
-		if(item.name == message.roomName) {
-			item.histories.push(message)
-		}
-	})
-	if(message.isSelf) {
-		_messageLists.push({
-			name: message.roomName,
-			histories: [message]
-		})
+	for (let i = 0, len = _messageLists.length; i < len; i++) {
+		let item = _messageLists[i];
+		item.name == message.roomName ? (item.histories.push(message)) : {}
 	}
 	return Object.assign({}, state, {messageLists: _messageLists})
 }

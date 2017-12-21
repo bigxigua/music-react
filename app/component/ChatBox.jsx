@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../scss/chatbox.scss'
 import { socket } from '../actions/index.js'
 import MessageList from '../component/MessageList.jsx'
-
+import $ from 'jquery';
 
 export default class ChatBox extends Component {
 	constructor(props){
@@ -12,7 +12,8 @@ export default class ChatBox extends Component {
 	}
 	listenMessage(){
 		socket.on('newMessage', (message) => {
-			this.props.addMessage(message)
+			this.props.addMessage(message);
+			this.autoScroll();
 		})
 	}
 	genRoomHistories(){
@@ -25,6 +26,20 @@ export default class ChatBox extends Component {
 		})
 		return TBZ.sortUp(histories, 'timestamp');
 	}
+	autoScroll(speed){
+		let _speed = speed || 'normal';
+		let $chatBox = $('.ChatBox-container');
+		if($chatBox.length == 0) return;
+		$chatBox.stop().animate({
+			scrollTop: $chatBox[0].scrollHeight + 'px'
+		}, _speed, 'swing');
+	}
+	componentWillReceiveProps(nextProps){
+		if(!nextProps.currentRoomName) return;
+		setTimeout(()=>{
+			this.autoScroll('slow');
+		}, 0)
+	}
 	render(){
 		if(!this.props.currentRoomName) return null;
 		const ChatBoxStyle = {
@@ -34,7 +49,7 @@ export default class ChatBox extends Component {
 			return (<MessageList key={item.timestamp} data={item}> </MessageList>)
 		})
 		return (
-			<div className="ChatBox-container" style={ChatBoxStyle}>
+			<div className="ChatBox-container" ref="chatbox" style={ChatBoxStyle}>
 				<div className="MessageContainer-content">
 					{ MessageLists }
 				</div>

@@ -20,6 +20,9 @@ export default class InputArea extends Component {
 			account: localStorage.getItem('account'),
 			content: this.state.content
 		}
+		this.setState({
+			content: ''
+		})
 		return sendMessage(message);
 	}
 	handleChange(event){

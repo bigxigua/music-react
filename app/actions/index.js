@@ -23,7 +23,7 @@ export const deleteChatItem = (index) => {
 //往当前房间消息队列里添加消息
 export const addMessage = (message) => {
 	return {
-		type: 'ADD_MESSAGE',
+		type: 'ADD_MESSAGE', 
 		message //对象 必要roomID/content/type/nickname
 	}
 }
