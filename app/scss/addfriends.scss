@@ -1,0 +1,80 @@
+@charset "UTF-8";
+@import "./mixin.scss";
+
+.addfriends {
+	width: 100%;
+	height: 100vh;
+	background: #00bfa5;
+}
+
+.addfriends-search {
+	background: #fff;
+	width: 94%;
+	margin: auto;
+	border-radius: 0.1rem;
+	height: 1rem;
+	margin-top: 0.2rem;
+	position: relative;
+
+	input {
+		border: none;
+		outline: none;
+		width: 7rem;
+		margin-left: .35rem;
+		display: block;
+		float: left;
+		height: 85%;
+		box-sizing: border-box;
+		padding-top: .25rem;
+		font-size: .35rem;
+		color: gray;
+	}
+
+}
+
+.addfriends-btn {
+	width: 2.1rem;
+	height: 100%;
+	background: gray;
+	font-size: 0.4rem;
+	color: #fff;
+	background: #68bC3e;
+	text-align: center;
+	line-height: 1rem;
+	position: absolute;
+	right: 0;
+	border-bottom-right-radius: 0.1rem;
+	border-top-right-radius: 0.1rem;
+}
+
+.addfriends-result {
+	width: 100%;
+	height: 100vh;
+	background: #eee;
+	overflow: hidden;
+	margin-top: .2rem;
+
+	p {
+		font-size: 0.3rem;
+		color: #797065;
+		padding-left: 0.3rem;
+		margin-top: .6rem;
+		margin-bottom: 0.2rem;
+	}
+
+	ul {
+		width: 100%;
+		overflow: hidden;
+
+		li {
+			width: 93%;
+	    display: block;
+	    margin: auto;
+			height: 2rem;
+			position: relative;
+			border-top: 1px solid #DFDCCE;
+		}
+
+	}
+
+}

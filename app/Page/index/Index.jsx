@@ -6,6 +6,7 @@ import UserCenter from '../../containers/UserCenter.js'
 import InputArea from '../../containers/InputArea.js';
 import ChatBox from '../../containers/ChatBox.js';
 import CreateRoom from '../../containers/createRoom.js';
+import AddFriends from '../../containers/AddFriend.js';
 
 import '../../scss/index.scss'
 import classNames from 'classnames'
@@ -76,6 +77,11 @@ export default class Index extends Component {
 			'page-container-chat animated': true,
 			'page-container-show': currentPage == 'CHATROOM-PAGE'
 		})
+		const AddFriendsClassNames = classNames({
+			'page-container-chat animated': true,
+			'page-container-show': currentPage == 'ADDFRIENDS-PAGE'
+
+		})
 		return (
 			<div className="MessageList-container">
 					{/*聊天列表*/}
@@ -101,6 +107,10 @@ export default class Index extends Component {
 				{/*创建群组界面*/}
 				<div className={CreateRoomClassNames}>
 							<CreateRoom />
+				</div>
+				{/*加好友=界面*/}
+				<div className={AddFriendsClassNames}>
+							<AddFriends />
 				</div>
 			</div>
 	)

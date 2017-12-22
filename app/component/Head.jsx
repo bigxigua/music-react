@@ -51,6 +51,7 @@ export default class Head extends Component {
 		this.getUserInfo = this.getUserInfo.bind(this);
 		this.toggleSettingCard = this.toggleSettingCard.bind(this);
 		this.gotoCreateRoom = this.gotoCreateRoom.bind(this);
+		this.gotoAddfriends = this.gotoAddfriends.bind(this);
 		this.state = {
 			showSettingCard: false,
 			initAnimate: false
@@ -67,6 +68,12 @@ export default class Head extends Component {
 	}
 	gotoCreateRoom(){
 		this.props.setPageState('CREATE-ROOM-PAGE');
+		this.setState({
+			showSettingCard: false
+		})
+	}
+	gotoAddfriends(){
+		this.props.setPageState('ADDFRIENDS-PAGE');
 		this.setState({
 			showSettingCard: false
 		})
@@ -110,9 +117,10 @@ export default class Head extends Component {
 									<div>{ Element }</div>
 									<div className={settingCardClassNames}>
 										<ul>
+												<li>设置</li>
+												<li onClick={this.gotoAddfriends}>加好友</li>
 												<li onClick={this.gotoCreateRoom}>创建群组</li>
 												<li onClick={this.showUserCenter}>用户资料</li>
-												<li>设置</li>
 												<li>切换账号</li>
 										</ul>
 									</div>
