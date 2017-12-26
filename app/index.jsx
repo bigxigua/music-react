@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route,Link} from 'react-router-dom'
 import { Provider } from 'react-redux'
 import './global/global.js' 
 import store from './store/configureStore.js';
-import injectTapEventPlugin from 'react-tap-event-plugin' //快速点击
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider' //material-ui库
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
@@ -48,7 +47,6 @@ class App extends React.Component {
 	}
 }
 
-injectTapEventPlugin();
 
 ReactDOM.render(
 	<Provider store={store}>

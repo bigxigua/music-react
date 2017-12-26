@@ -33,7 +33,18 @@ export default class AddFriends extends Component {
 						<p>搜索结果</p>
 						<ul>
 							<li>
-								<img />
+								<img src={TBZ.DEFAULT_AVATAR} className="addfriends-avatar" />
+								<div className="addfriends-right">
+										<div className="addfriends-name">花钱小猪</div>
+										<div className="addfriends-icon">
+												<div className="sex">
+													<i className="w-icon-man"></i>
+													<span>男</span>
+												</div>
+										</div>
+										<div className="addfriends-desc">花钱小猪</div>
+								</div>
+								<div className='addfriends-add'>添加</div>
 							</li>
 							<li></li>
 							<li></li>

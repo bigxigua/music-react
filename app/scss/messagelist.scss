@@ -1,52 +1,83 @@
 @charset "UTF-8";
 @import "./mixin.scss";
 
-.MessageContainer-content{
-	-webkit-overflow-scrolling:touch;
+.MessageContainer-content {
+	-webkit-overflow-scrolling: touch;
 }
-.MessageList-container{
+
+.MessageList-container {
 	width: 100%;
 	height: 2rem;
 	position: relative;
 }
-.MessageList-container-other{
-	.MessageList-userinfo{
+
+.MessageList-container-other {
+	.MessageList-userinfo {
 		float: left;
 		margin-left: 0.2rem;
 	}
-	.MessageList-content{
+
+	.MessageList-content {
 		float: left;
-		p{
+		margin-left: .2rem;
+
+		p {
 			text-align: left;
 		}
-		.MessageList-message{
+
+		.MessageList-message {
 			float: left;
+
+			.triangle-right-outer {
+				right: 1.16rem;
+				top: .05rem;
+				transform: rotate(-140deg);
+			}
+
 		}
+
+	}
+
+}
+.content-msg{
+	float: left;
+	div{
+		width: .8rem;
+    height: .8rem;
+    border: none;
+    margin-left: .1rem;
+    display: inline-block;
 	}
 }
-.MessageList-userinfo{
+
+.MessageList-userinfo {
 	float: right;
 	margin-right: 0.1rem;
-	.MessageList-avatar{
+
+	.MessageList-avatar {
 		width: 1.2rem;
-    height: 1.2rem;
-    @include border-radius(100%);
-    margin-top: 0.2rem;
+		height: 1.2rem;
+		@include border-radius(100%);
+		margin-top: 0.2rem;
 	}
+
 }
-.MessageList-content{
+
+.MessageList-content {
 	float: right;
 	color: #5f6265;
-	p{
+
+	p {
 		font-size: 0.4rem;
-	    text-align: right;
-	    margin-right: 0.4rem;
-	    position: relative;
-	    top: 0.15rem;
+		text-align: right;
+		margin-right: 0.4rem;
+		position: relative;
+		top: 0.15rem;
 	}
-	.MessageList-message{
+
+	.MessageList-message {
 		margin-right: 0.3rem;
-    	margin-top: 0.2rem;
+		margin-top: 0.2rem;
 		display: inline-block;
 		text-align: center;
 		padding: 6px 12px;
@@ -58,19 +89,22 @@
 		position: relative;
 		@include border-radius(0.2rem);
 		font-size: 0.4rem;
-		.triangle-right-outer{
-		    content: "";
-		    -webkit-transform: rotate(-20deg);
-		    transform: rotate(-20deg);
-		    position: absolute;
-		    border-left: 10px solid #ccc;
-		    border-top: 2px solid transparent;
-		    border-bottom: 7px solid transparent;
-		    right: -0.2rem;
-    		top: 0.1rem;
+
+		.triangle-right-outer {
+			content: "";
+			-webkit-transform: rotate(-20deg);
+			transform: rotate(-20deg);
+			position: absolute;
+			border-left: 10px solid #ccc;
+			border-top: 2px solid transparent;
+			border-bottom: 7px solid transparent;
+			right: -0.2rem;
+			top: 0.1rem;
 		}
+
 	}
+
 }
-.MessageList-container-other{
-	
+
+.MessageList-container-other {
 }

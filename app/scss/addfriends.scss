@@ -49,9 +49,11 @@
 
 .addfriends-result {
 	width: 100%;
-	height: 100vh;
+	height: calc(100vh - 4.2rem);
 	background: #eee;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 	margin-top: .2rem;
 
 	p {
@@ -68,8 +70,8 @@
 
 		li {
 			width: 93%;
-	    display: block;
-	    margin: auto;
+			display: block;
+			margin: auto;
 			height: 2rem;
 			position: relative;
 			border-top: 1px solid #DFDCCE;
@@ -77,4 +79,66 @@
 
 	}
 
+}
+
+.addfriends-avatar {
+	width: 1.6rem;
+	height: 1.6rem;
+	border-radius: 100%;
+	position: absolute;
+	top: .2rem;
+}
+
+.addfriends-right {
+	position: absolute;
+	left: 1.9rem;
+	height: 100%;
+	overflow: hidden;
+	text-align: left;
+}
+
+.addfriends-name {
+	font-size: .45rem;
+	color: #585657;
+	margin-top: .2rem;
+}
+
+.addfriends-icon {
+	height: .5rem;
+
+	.sex {
+		background: #EE9DAE;
+		width: 1rem;
+		height: .5rem;
+		border-radius: .1rem;
+		color: #fff;
+		font-size: .4rem;
+		line-height: .5rem;
+		text-align: center;
+
+		.w-icon-man {
+			position: relative;
+			top: .05rem;
+		}
+
+	}
+
+}
+
+.addfriends-desc {
+	font-size: .4rem;
+	color: #8c8a8d;
+}
+.addfriends-add{
+    position: absolute;
+    right: 0;
+    width: 2rem;
+    background: #68bC3e;
+    height: .8rem;
+    border-radius: .1rem;
+    color: #fff;
+    text-align: center;
+    line-height: .8rem;
+    font-size: .4rem;
+    top: .6rem;
 }

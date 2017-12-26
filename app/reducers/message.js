@@ -7,10 +7,18 @@ let defaultState = {
 }
 
 function addMessage(state,message) {
+	let isEmptyHistories = true;
 	const _messageLists = [].concat(state.messageLists);
 	for (let i = 0, len = _messageLists.length; i < len; i++) {
 		let item = _messageLists[i];
-		item.name == message.roomName ? (item.histories.push(message)) : {}
+		item.name == message.roomName 
+		          ? (item.histories.push(message),isEmptyHistories = false) : {}
+	}
+	if(isEmptyHistories) {
+		_messageLists.push({
+			name: message.roomName,
+			histories: [message]
+		})
 	}
 	return Object.assign({}, state, {messageLists: _messageLists})
 }

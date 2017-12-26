@@ -2,15 +2,51 @@ import React, { Component } from 'react';
 import '../scss/messagelist.scss'
 import classNames from 'classnames'
 
+const pattenEmoji = /#\([\u4e00-\u9fa5]{1,4}\)/gm;
+const pattenEmojiExist = /[\u4e00-\u9fa5]{1,4}/gm;
+
+const Emoji = (props) => {
+	const index = props.data;
+	if(index == undefined) {
+		return null
+	} else {
+			return <div 
+					style={{ background: 'url('+ TBZ.expressionsIMG +') 0px ' + (-index)*30 + 'px no-repeat' }}></div>
+	}
+}
+
+const MessageIcon = (props) => {
+	let imgArr = [];
+	let result = props.content.replace(pattenEmoji, (item) => {
+		let index = TBZ.expressions.indexOf(item.match(pattenEmojiExist)[0]);
+		if(index !== -1) {
+			imgArr.push(index);
+			return 'fuck'
+		}
+	})
+	let resultArr = result.split('fuck'), len = resultArr.length;
+	return resultArr.map((item, index) => {
+		return (
+			<div key={index} className="content-msg">
+				<span>{item}</span>
+				{ (index == len-1 && !item) ? '' : <Emoji data={imgArr[index]}/>}
+			</div>)
+	});
+	
+}
+
 export default class MessageList extends Component {
 	constructor(props){
 		super(props); 
 	}
 	render(){
 		const info = this.props.data;
+		// let words = <span>info.content</span>;
+
+		
 		const messageClassNames = classNames({
 			'MessageList-container': true,
-			'MessageList-container-other': !info.isSelf
+			'MessageList-container-other': info.owner.account+'' !== localStorage.getItem('account')
 		})
 		return ( 
 			<div className={messageClassNames}>
@@ -20,7 +56,7 @@ export default class MessageList extends Component {
 				<div className="MessageList-content">
 					<p>{ info.owner.nickname }</p>
 					<div className="MessageList-message">
-							{ info.content }
+							<MessageIcon content={info.content} />
 							<div className="triangle-right-outer"></div>
 					</div>
 				</div>
