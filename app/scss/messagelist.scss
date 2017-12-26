@@ -41,12 +41,19 @@
 }
 .content-msg{
 	float: left;
+	.nomal-span{
+		display: block;
+		float: left;
+		position: relative;
+    top: .2rem;
+    margin-left: .1rem;
+	}
 	div{
 		width: .8rem;
     height: .8rem;
     border: none;
     margin-left: .1rem;
-    display: inline-block;
+    float: left;
 	}
 }
 

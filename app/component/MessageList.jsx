@@ -22,13 +22,18 @@ const MessageIcon = (props) => {
 		if(index !== -1) {
 			imgArr.push(index);
 			return 'fuck'
+		} else {
+			return item
 		}
 	})
 	let resultArr = result.split('fuck'), len = resultArr.length;
+	const spanClass = classNames({
+			'nomal-span': len !== 1
+	})
 	return resultArr.map((item, index) => {
 		return (
 			<div key={index} className="content-msg">
-				<span>{item}</span>
+				<span className={spanClass}>{item}</span>
 				{ (index == len-1 && !item) ? '' : <Emoji data={imgArr[index]}/>}
 			</div>)
 	});
@@ -41,13 +46,11 @@ export default class MessageList extends Component {
 	}
 	render(){
 		const info = this.props.data;
-		// let words = <span>info.content</span>;
-
-		
 		const messageClassNames = classNames({
 			'MessageList-container': true,
 			'MessageList-container-other': info.owner.account+'' !== localStorage.getItem('account')
 		})
+
 		return ( 
 			<div className={messageClassNames}>
 				<div className="MessageList-userinfo">

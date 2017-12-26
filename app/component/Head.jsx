@@ -21,7 +21,7 @@ const MoreIcon = (props) => {
 const DeleteIcon = () => {
 	return (
 			<div className="Header-icon-delete">
-				<i className="w-icon-close"></i>
+				<i className="w-icon-user"></i>
 			</div>
 		)
 }

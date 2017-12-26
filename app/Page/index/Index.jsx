@@ -7,6 +7,7 @@ import InputArea from '../../containers/InputArea.js';
 import ChatBox from '../../containers/ChatBox.js';
 import CreateRoom from '../../containers/createRoom.js';
 import AddFriends from '../../containers/AddFriend.js';
+import Friends from '../../containers/Friends.js';
 
 import '../../scss/index.scss'
 import classNames from 'classnames'
@@ -108,10 +109,12 @@ export default class Index extends Component {
 				<div className={CreateRoomClassNames}>
 							<CreateRoom />
 				</div>
-				{/*加好友=界面*/}
+				{/*加好友界面*/}
 				<div className={AddFriendsClassNames}>
 							<AddFriends />
 				</div>
+				{/*好友列表界面*/}
+				{/*<Friends className="friends" />*/}
 			</div>
 	)
 	}
