@@ -81,7 +81,10 @@ export default class Index extends Component {
 		const AddFriendsClassNames = classNames({
 			'page-container-chat animated': true,
 			'page-container-show': currentPage == 'ADDFRIENDS-PAGE'
-
+		})
+		const FriendsClassNames = classNames({
+			'page-container-friends animated': true,
+			'page-container-show': currentPage == 'FRIENDSLISTS-PAGE'
 		})
 		return (
 			<div className="MessageList-container">
@@ -114,7 +117,9 @@ export default class Index extends Component {
 							<AddFriends />
 				</div>
 				{/*好友列表界面*/}
-				{/*<Friends className="friends" />*/}
+				<div className={FriendsClassNames}>
+					<Friends className="friends" />
+				</div>
 			</div>
 	)
 	}

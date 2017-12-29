@@ -8,6 +8,7 @@
     return str;
   }
   window.TBZ = {
+    USER_ACCOUNT: localStorage.getItem('account'),
     DEFAULT_AVATAR: require('../images/avatar_user.jpg'),
     DEFAULT_USER_BG: require('../images/user-bg.jpg'),
     DEFAULT_CHATROOM_BG: require('../images/chatroom.jpg'),

@@ -33,6 +33,7 @@ module.exports = {
 			avatar: '',
 			sex: '未知',
 			info: '',
+			friends:['account'],
 			onlineState: 1,
 			rooms: [room._id]
 		})
@@ -72,5 +73,37 @@ module.exports = {
 				message: '用户不存在'
 			}
 		}
+	},
+	searchUsers: async(name) => {
+		let users = await User.find({nickname: { $regex: name, $options: 'i' } });
+		if(users && Array.isArray(users)) {
+			return {
+				userLists: users
+			}
+		} else {
+			return {
+				isError: true,
+				message: '查询失败'
+			}
+		}
+	},
+	addFriends: async(info) => {
+		//像自己的朋友列表里添加该朋友
+		//通知改用户我发起了申请
+		let friend = await User.findOneUser({ account: info.friendAccount });
+		let slef = await User.findOneUser({ account: info.selfAccount });
+		// let updateResult = await User.update({account: info.selfAccount}, {friends: _friends}, {multi: true});
+		console.log(slef.friends)
+		if(slef) {
+			slef.friends.push(friend);
+			await slef.save();
+			return {result: friend}
+		} else {
+			return {
+				isError: true,
+				message: '添加好友失败'
+			}
+		}
+		
 	}
 }

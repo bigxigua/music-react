@@ -11,7 +11,8 @@
 	background: #eee; 
 }
 .page-container-center,
-.page-container-chat{
+.page-container-chat,
+.page-container-friends{
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -24,6 +25,9 @@
 	@include transform(translateX(-100%));
 }
 .page-container-chat{
+	@include transform(translateX(100%));
+}
+.page-container-friends{
 	@include transform(translateX(100%));
 }
 .page-container-hide{

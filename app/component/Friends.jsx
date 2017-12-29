@@ -78,6 +78,7 @@ export default class Friends extends Component {
 									</li>
 							</ul>
 						</div>
+						<div className="friends-back" onClick={this.back}>返回</div>
 				</div>
 		)
 	}

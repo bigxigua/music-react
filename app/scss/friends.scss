@@ -115,3 +115,17 @@
 	left: 2rem;
 	top: 1.2rem;
 }
+.friends-back{
+	width: 2rem;
+	height: 1rem;
+	background: green;
+	border-radius: .2rem;
+	text-align: center;
+	line-height: 1rem;
+	font-size: .5rem;
+	color: #fff;
+	position: fixed;
+	left: 50%;
+	@include transform(translateX(-50%));
+	bottom: 0;
+}

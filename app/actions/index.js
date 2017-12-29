@@ -121,3 +121,46 @@ export const getAllRoomHistories = (histories) => {
 	}
 }
 
+
+//搜索用户
+export const _searchUsers_ = (userLists) => {
+	return {
+		type: 'SEARCH_USERS',
+		userLists
+	}
+}
+//搜索用户
+export const searchUsers = (nickname) => {
+	return (dispatch) => {
+		return new Promise((resolve, reject) => {
+			socket.emit('searchUsers', nickname, (body) => {
+				if(!body.isError){
+					dispatch(_searchUsers_(body.userLists))
+				}
+				body.isError ? (reject(body)) : (resolve(body))
+			})
+		})
+	}
+}
+
+//添加好友
+export const _addFriends_ = (result) => {
+	return {
+		type: 'ADD_FRIENDS',
+		result
+	}
+}
+//添加好友
+export const addFriends = (info) => {
+	return (dispatch) => {
+		return new Promise((resolve, reject) => {
+			socket.emit('addFriends', info, (body) => {
+				if(!body.isError){
+					dispatch(_addFriends_(body.result))
+				}
+				body.isError ? (reject(body)) : (resolve(body))
+			})
+		})
+	}
+}
+

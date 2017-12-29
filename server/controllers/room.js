@@ -49,7 +49,6 @@ module.exports = {
 				let roomNameArr = util.getRoomNameArr(user.rooms);
 				let histories = await History.find({roomName: {$in: roomNameArr} }).populate('owner');
 				let historiesArr = util.getAllRoomHistorys(histories);
-				console.log(historiesArr)
 				return {
 					userRoomLists:userRoomLists,
 					histories: historiesArr

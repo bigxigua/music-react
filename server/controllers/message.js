@@ -41,7 +41,7 @@ module.exports = {
 				console.log('message.js ---- 房间不存在')
 			}
 		} else {
-			callbackError(cb, '玩家不存在')
+			callbackError(cb, '用户不存在')
 			console.log('message.js ---- 玩家不存在')
 		}
 	}

@@ -59,11 +59,9 @@ export default class FormContent extends Component {
 				data: data,
 				crossOrigin: true,
 				success: (res) => {
-					console.log(res)
 					this.vertifyResponse(res)
 				},
 				error: (err) => {
-					console.log(err)
 					this.vertifyResponse(err)
 				}
 			})
@@ -108,7 +106,7 @@ export default class FormContent extends Component {
 				<div className="Form-container">
 					{nameElement}
 					<div className="Form-input Form-input-account">
-						<input type="text" placeholder="用户名/手机号" maxLength="15" autoComplete="off" ref="account" />
+						<input type="text" placeholder="输入账号" maxLength="15" autoComplete="off" ref="account" />
 					</div>
 					<div className="Form-input Form-input-password">
 						<input type="password" placeholder="输入密码" maxLength="16" autoComplete="off" ref="password" />

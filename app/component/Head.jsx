@@ -18,9 +18,9 @@ const MoreIcon = (props) => {
 		)
 }
 
-const DeleteIcon = () => {
+const FriendsListIcon = (props) => {
 	return (
-			<div className="Header-icon-delete">
+			<div className="Header-icon-delete" onClick={props.handle}>
 				<i className="w-icon-user"></i>
 			</div>
 		)
@@ -52,6 +52,7 @@ export default class Head extends Component {
 		this.toggleSettingCard = this.toggleSettingCard.bind(this);
 		this.gotoCreateRoom = this.gotoCreateRoom.bind(this);
 		this.gotoAddfriends = this.gotoAddfriends.bind(this);
+		this.gotoFriendsListsPage = this.gotoFriendsListsPage.bind(this);
 		this.state = {
 			showSettingCard: false,
 			initAnimate: false
@@ -90,6 +91,9 @@ export default class Head extends Component {
 			showSettingCard: !showSettingCard
 		})) : {};
 	}
+	gotoFriendsListsPage(){
+		this.props.setPageState('FRIENDSLISTS-PAGE');
+	}
 	render(){
 		this.getUserInfo();
 		const {onlineState, avatar} = this.props;
@@ -101,7 +105,7 @@ export default class Head extends Component {
 		})
 		const iconList = isChatList ?
 											( <div><SearchIcon /><UserSettingIcon /><MoreIcon toggleSettingCard={this.toggleSettingCard} /></div>):
-											( <div><MessageIcon /><MoreIcon toggleSettingCard={this.toggleSettingCard} /><DeleteIcon /></div>)
+											( <div><MessageIcon /><MoreIcon toggleSettingCard={this.toggleSettingCard} /><FriendsListIcon handle={this.gotoFriendsListsPage} /></div>)
 											
 		const Element = isChatList ? 
 		(<div className="Header-Menu-container" onClick={this.showChatLists}>

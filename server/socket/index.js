@@ -18,9 +18,7 @@ const callbackSuccess = function (cb, info) {
 
 module.exports = function (io) {
 	io.on('connection', (socket) => {
-
 		socket.join(config.INIT_ROOM);
-
 		socket.on('message', (msg, cb) => {
 			message.saveMessage(msg, socket, cb).catch((err) => {
 				callbackError(cb, err)
@@ -50,5 +48,23 @@ module.exports = function (io) {
 				callbackError(cb, err)
 			})
 		});
+
+		socket.on('searchUsers', (nickname, cb) => {
+			user.searchUsers(nickname).then((lists) => {
+				callbackSuccess(cb, lists)
+			}).catch((err) => {
+				callbackError(cb, err)
+			})
+		});
+
+		socket.on('addFriends', (info, cb) => {
+			user.addFriends(info).then((result) => {
+				callbackSuccess(cb, result)
+			}).catch((err) => {
+				callbackError(cb, err)
+			})
+		});
+
+
 	})
 }
