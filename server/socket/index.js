@@ -19,11 +19,17 @@ const callbackSuccess = function (cb, info) {
 module.exports = function (io) {
 	io.on('connection', (socket) => {
 		socket.join(config.INIT_ROOM);
+		
 		socket.on('message', (msg, cb) => {
 			message.saveMessage(msg, socket, cb).catch((err) => {
 				callbackError(cb, err)
 			})
 		});
+
+		socket.on('joinRooms', (account, cb) => {
+			console.log(account)
+			socket.join(account);
+		})
 
 		socket.on('getUserInfo', (account, cb) => {
 			user.getUserInfo(account).then((info) => {
@@ -57,8 +63,8 @@ module.exports = function (io) {
 			})
 		});
 
-		socket.on('addFriends', (info, cb) => {
-			user.addFriends(info).then((result) => {
+		socket.on('applyFriend', (account, cb) => {
+			user.applyFriend(account, socket).then((result) => {
 				callbackSuccess(cb, result)
 			}).catch((err) => {
 				callbackError(cb, err)

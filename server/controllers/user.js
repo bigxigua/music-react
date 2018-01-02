@@ -34,6 +34,8 @@ module.exports = {
 			sex: '未知',
 			info: '',
 			friends:['account'],
+			notify: [],
+			myApplyLists: [],
 			onlineState: 1,
 			rooms: [room._id]
 		})
@@ -87,17 +89,21 @@ module.exports = {
 			}
 		}
 	},
-	addFriends: async(info) => {
-		//像自己的朋友列表里添加该朋友
-		//通知改用户我发起了申请
+	applyFriend: async(info, socket) => { 
+		//发起好友申请
+		//通知对方
 		let friend = await User.findOneUser({ account: info.friendAccount });
 		let slef = await User.findOneUser({ account: info.selfAccount });
-		// let updateResult = await User.update({account: info.selfAccount}, {friends: _friends}, {multi: true});
-		console.log(slef.friends)
-		if(slef) {
-			slef.friends.push(friend);
-			await slef.save();
-			return {result: friend}
+		if(slef && friend) {
+			const myApplyLists = slef.myApplyLists.push({account: info.friendAccoun});
+			const notify = friend.notify.push({account: info.selfAccount});
+			let result_self = await User.update({account: info.selfAccount}, { myApplyLists: myApplyLists });
+			let result_friend = await User.update({account: info.friendAccount}, { notify: notify });
+			// console.log(socket)
+			// socket.broadcast.to(info.friendAccount).emit('applyMessage', slef);
+			return {
+				result: socket
+			}
 		} else {
 			return {
 				isError: true,

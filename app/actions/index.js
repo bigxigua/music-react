@@ -1,6 +1,6 @@
 import io from 'socket.io-client'
 
-export const socket = io('http://localhost:3003', {
+export const socket = io('http://172.22.125.3:3003', {
 	'force new connection': true
 });
 
@@ -143,20 +143,20 @@ export const searchUsers = (nickname) => {
 	}
 }
 
-//添加好友
-export const _addFriends_ = (result) => {
+//申请加好友
+export const _applyFriend_ = (result) => {
 	return {
-		type: 'ADD_FRIENDS',
+		type: 'APPLY_FRIEND',
 		result
 	}
 }
 //添加好友
-export const addFriends = (info) => {
+export const applyFriend = (accounts) => {
 	return (dispatch) => {
 		return new Promise((resolve, reject) => {
-			socket.emit('addFriends', info, (body) => {
+			socket.emit('applyFriend', accounts, (body) => {
 				if(!body.isError){
-					dispatch(_addFriends_(body.result))
+					dispatch(_applyFriend_(body.result))
 				}
 				body.isError ? (reject(body)) : (resolve(body))
 			})

@@ -26,29 +26,29 @@ export default class AddFriends extends Component {
 		if(!nickname) return;
 		this.props.searchUsers(nickname);
 	}
-	verifyFriends(friends, account){
+	verifyFriends(notifies){
+		console.log(notifies)
 		let bool = false;
-		friends.forEach((item) => {
-			item.account == account ? (bool = true) : {};
-		})
+		notifies.forEach((item) => {
+			item.account == TBZ.USER_ACCOUNT ? (bool = true) : {};
+		}) 
 		return bool;
 	}
-	addFriends(info){
-		this.props.addFriends(info)
+	applyFriend(info){ 
+		this.props.applyFriend(info)
 	}
 	render(){
 		const slideClassNames = classNames({
 			'createRoom-head-slide': this.props.currentPage == 'ADDFRIENDS-PAGE'
 		})
-		console.log(this.props.searchResults)
 		const lists = this.props.searchResults.map((item, index) => {
-			let isFriendship = this.verifyFriends(item.friends,item.account);
+			let isFriendship = this.verifyFriends(item.notify);
 			let addButton;
 			let accounts = {
-				friendAccount: item.account,
+				friendAccount: item.account + '',
 				selfAccount: TBZ.USER_ACCOUNT
 			}
-			isFriendship ? (addButton = null) : (addButton = (<div className='addfriends-add' onClick={() => {this.addFriends(accounts)}}>添加</div>));
+			isFriendship ? (addButton = null) : (addButton = (<div className='addfriends-add' onClick={() => {this.applyFriend(accounts)}}>添加</div>));
 			return (
 				<li key={index}>
 					<img src={item.avatar || TBZ.DEFAULT_AVATAR} className="addfriends-avatar" />

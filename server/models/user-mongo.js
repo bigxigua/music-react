@@ -10,6 +10,8 @@ const user = new Schema({
 	info: String,
 	onlineState: Number,
 	friends: Array,
+	myApplyLists: Array, //我发起的好友申请
+	notify: Array, //通知
 	rooms: [{
 		type: Schema.Types.ObjectId, //房间号以room._id表示
 		ref: 'room' //关联room表

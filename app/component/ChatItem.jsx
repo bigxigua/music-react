@@ -5,7 +5,7 @@ import Hammer from 'hammerjs'
 import { getCss } from '../global/util.js'
 
  
-const DEFAULT_GROUP_AVATAR = require('../images/download.svg')
+const DEFAULT_GROUP_AVATAR = TBZ.DEFAULT_GROUP_AVATAR;
 const EXPAND_CLASS = 'ChatListItem-Item-expand'
 
 export default class ChatItem extends Component {

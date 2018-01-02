@@ -29,7 +29,7 @@
 			float: left;
 
 			.triangle-right-outer {
-				right: 1.16rem;
+				right: .77rem;
 				top: .05rem;
 				transform: rotate(-140deg);
 			}
@@ -88,9 +88,9 @@
 		display: inline-block;
 		text-align: center;
 		padding: 6px 12px;
-		background: #ccc;
+		background: #fff;
 		max-width: 90%;
-		border: 1px solid #ccc;
+		border: 1px solid #fff;
 		float: right;
 		word-break: break-all;
 		position: relative;
@@ -102,7 +102,7 @@
 			-webkit-transform: rotate(-20deg);
 			transform: rotate(-20deg);
 			position: absolute;
-			border-left: 10px solid #ccc;
+			border-left: 10px solid #fff;
 			border-top: 2px solid transparent;
 			border-bottom: 7px solid transparent;
 			right: -0.2rem;

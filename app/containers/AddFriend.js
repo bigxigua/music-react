@@ -6,7 +6,7 @@ import {
 	setPageState,
 	createRoomAction,
 	searchUsers,
-	addFriends
+	applyFriend
 } from '../actions/index.js'
 
 function mapStateToProps(state) {
@@ -28,8 +28,8 @@ function mapDispatchToProps(dispatch) {
 		searchUsers: (nickname) => {
 			dispatch(searchUsers(nickname))
 		},
-		addFriends: (account) => {
-			dispatch(addFriends(account))
+		applyFriend: (accounts) => {
+			dispatch(applyFriend(accounts))
 		}
 	}
 }

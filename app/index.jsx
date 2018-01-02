@@ -5,14 +5,8 @@ import { Provider } from 'react-redux'
 import './global/global.js' 
 import store from './store/configureStore.js';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider' //material-ui库
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-
-// import ReactCSSTransitionGroup from 'react-transition-group/CSSTransition.js' // 动画插件
-
 import './scss/main.scss'
 import 'amfe-flexible'
-// import '../node_modules/animate.css/animate.min.css'
 import '../node_modules/uiw-iconfont/fonts/w-iconfont.css'
 
 import Bundle from './Page/bundle.jsx'
@@ -33,16 +27,15 @@ class App extends React.Component {
 	}
 	render(){
 		return (
-			<MuiThemeProvider muiTheme={getMuiTheme()}>
-					<Router>
+			<div>
+				<Router>
 						<div className='container'>
 							<Route exact path="/" component={IndexBundle} />
 							<Route path="/login" component={Login} />
 							<Route path="/register" component={Register} />
 						</div>		
 					</Router>
-				
-			</MuiThemeProvider>
+			</div>
 		)
 	}
 }

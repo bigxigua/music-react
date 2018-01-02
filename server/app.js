@@ -43,8 +43,8 @@ app.use(logger())
 app.use(cors())
 app.use(require('koa-static')(__dirname + '/public'))
 
-app.use(views(__dirname + '/views', {
-  extension: 'pug'
+app.use(views(__dirname + '/public/dist/', {
+  extension: 'html'
 }))
 
 // logger

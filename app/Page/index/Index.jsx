@@ -8,9 +8,17 @@ import ChatBox from '../../containers/ChatBox.js';
 import CreateRoom from '../../containers/createRoom.js';
 import AddFriends from '../../containers/AddFriend.js';
 import Friends from '../../containers/Friends.js';
+import Notify from '../../containers/Notify.js';
+import { socket } from '../../actions/index.js'
 
 import '../../scss/index.scss'
 import classNames from 'classnames'
+
+//当用户进来时就让该用户加入到scoket中
+socket.emit('joinRooms', TBZ.USER_ACCOUNT + '');
+socket.on('applyMessage', (data) => {
+	console.log(data)
+});
 
 export default class Index extends Component {
 	constructor(props){
@@ -86,6 +94,10 @@ export default class Index extends Component {
 			'page-container-friends animated': true,
 			'page-container-show': currentPage == 'FRIENDSLISTS-PAGE'
 		})
+		const NotifyClassNames = classNames({
+			'page-container-friends animated': true,
+			'page-container-show': currentPage == 'NOTIFY-PAGE'
+		})
 		return (
 			<div className="MessageList-container">
 					{/*聊天列表*/}
@@ -119,6 +131,9 @@ export default class Index extends Component {
 				{/*好友列表界面*/}
 				<div className={FriendsClassNames}>
 					<Friends className="friends" />
+				</div>
+				<div className={NotifyClassNames}>
+					<Notify className="friends" />
 				</div>
 			</div>
 	)

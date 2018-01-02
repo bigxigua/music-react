@@ -60,7 +60,6 @@ module.exports = {
     historyApiFallback: true,
     hot: false,
     host: '0.0.0.0',
-
     port: 3002,
     compress: true //是否启用gzip压缩
   }
