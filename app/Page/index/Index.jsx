@@ -16,33 +16,46 @@ import classNames from 'classnames'
 
 //当用户进来时就让该用户加入到scoket中
 socket.emit('joinRooms', TBZ.USER_ACCOUNT + '');
-socket.on('applyMessage', (data) => {
-	console.log(data)
-});
 
 export default class Index extends Component {
 	constructor(props){
 		super(props);
 		this.deleteItem = this.deleteItem.bind(this);
 		this.setPageState = this.setPageState.bind(this);
-		this.getUserInfo = this.getUserInfo.bind(this);
 		this.getRoomLists = this.getRoomLists.bind(this);
 		this.getLatestMessage = this.getLatestMessage.bind(this);
+		this.getUserInfo(TBZ.USER_ACCOUNT); //获取登陆用户的所有信息
 		this.getRoomLists();
+		this.createPrivateRoom();
 	}
 
 	componentDidMount(){
-		// console.log(this.props.histories)
+		
 	}
+
+	createPrivateRoom(){
+		socket.on('createPrivateRoom', (info) => {
+			console.log(info, '--------------------');
+			this.props.createRoomAction({
+				roomName: info.roomName,
+				account: TBZ.USER_ACCOUNT,
+				isPrivateRoom: true
+			})
+		});
+	}
+
 	deleteItem(index){
 		this.props.deleteItem(index);
 	}
+
 	setPageState(state){
 		this.props.setPageState(state)
 	}
+
 	getUserInfo(account){
 		this.props.getUserInfo(account)
 	}
+
 	getRoomLists(){
 		this.props.getRoomLists(localStorage.getItem('token'))
 	}
@@ -102,7 +115,7 @@ export default class Index extends Component {
 			<div className="MessageList-container">
 					{/*聊天列表*/}
 					<div className={ChatListClassNames}>
-							<Head data={MessageListData} setPageState={this.setPageState} getUserInfo={this.getUserInfo}></Head>
+							<Head data={MessageListData} setPageState={this.setPageState}></Head>
 							<div className="ActiveList-container">
 								<SearchBar></SearchBar>
 								{ ListItems }
@@ -114,7 +127,7 @@ export default class Index extends Component {
 					</div>
 					{/*聊天界面*/}
 					<div className={ChatBoxClassNames}>
-							<Head data={MessageListData} setPageState={this.setPageState} getUserInfo={this.getUserInfo}></Head>
+							<Head data={MessageListData} setPageState={this.setPageState}></Head>
 							<div className="ChatBox">
 									<ChatBox />
 							</div>

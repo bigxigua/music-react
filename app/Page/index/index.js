@@ -6,14 +6,16 @@ import {
 	deleteChatItem,
 	setPageState,
 	getUserInfo,
-	getRoomLists
+	getRoomLists,
+	createRoomAction
 } from '../../actions/index.js'
 
 function mapStateToProps(state) {
 	return {
 		currentPage: state.setPageState.pageState,
 		lists: state.roomList.roomLists,
-		histories: state.message.messageLists
+		histories: state.message.messageLists,
+		userInfo: state.setUserInfo.userInfo
 	}
 }
 
@@ -22,7 +24,10 @@ function mapDispatchToProps(dispatch) {
 		deleteItem: (index) => {dispatch(deleteChatItem(index))},
 		setPageState: (params) => {dispatch(setPageState(params))},
 		getUserInfo: (account) => {dispatch(getUserInfo(account))},
-		getRoomLists: (token) => {dispatch(getRoomLists(token))}
+		getRoomLists: (token) => {dispatch(getRoomLists(token))},
+		createRoomAction: (info) => {
+			dispatch(createRoomAction(info))
+		},
 	}
 } 
 

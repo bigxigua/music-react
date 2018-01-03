@@ -11,23 +11,28 @@ export default class InputArea extends Component {
 			content: '',
 			showEmoji: false
 		}
-		this.sendMessage = this.sendMessage.bind(this);
+		this.sendMessageHandle = this.sendMessageHandle.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.showEmojiHandle = this.showEmojiHandle.bind(this);
 	}
-	sendMessage(){
+	sendMessageHandle(){
 		if(!this.state.content) return;
-		const timestamp = new Date().getTime();
+		let currentRoomInfo = {};
+		this.props.roomLists.map((item) => {
+			item.roomName == this.props.currentRoomName ? (currentRoomInfo = item) : {};
+		})
 		let message = {
 			roomName: this.props.currentRoomName,
 			type: 'textMessage',
 			account: localStorage.getItem('account'),
-			content: this.state.content
+			content: this.state.content,
+			isPrivate: currentRoomInfo.isPrivate
 		}
 		this.setState({
 			content: ''
-		})
-		return sendMessage(message);
+		});
+		return sendMessage(message)
+		// currentRoomInfo.isPrivate ? (sendPrivateMessage(message)) : (sendMessage(message));
 	}
 	handleChange(event){
 		this.setState({content: event.target.value});
@@ -75,7 +80,7 @@ export default class InputArea extends Component {
 												 onChange={this.handleChange} />
 									<i className="w-icon-smile-o" onClick={this.showEmojiHandle}></i>
 							</div>
-							<div className="InputArea-send" onClick={this.sendMessage}>
+							<div className="InputArea-send" onClick={this.sendMessageHandle}>
 									<i className="w-icon-enter"></i>
 							</div>
 							<div className={showEmojiClassNames}>

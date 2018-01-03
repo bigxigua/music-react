@@ -10,7 +10,7 @@ export default class UserCenter extends Component {
 		return this.props.setPageState('USERINFO-HIDE-PAGE')
 	}
 	render(){
-		const { avatar, nickname, account, info } = this.props;
+		const { avatar, nickname, account, info } = this.props.userInfo;
 		return (
 				<div className="UserCenter-container">
 						<div className="UserCenter-top-bg">

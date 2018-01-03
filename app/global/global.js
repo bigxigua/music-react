@@ -6,14 +6,14 @@
       str = str.replace(reg, arguments[i]);
     }
     return str;
-  }
+  };
   window.TBZ = {
     USER_ACCOUNT: localStorage.getItem('account'),
     DEFAULT_AVATAR: require('../images/avatar_user.jpg'),
     DEFAULT_USER_BG: require('../images/user-bg.jpg'),
     DEFAULT_CHATROOM_BG: require('../images/chatroom.jpg'),
     DEFAULT_GROUP_AVATAR: require('../images/download.svg'),
-    DEFAULT_URL: 'http://172.22.125.3:3003/',
+    DEFAULT_URL: 'http://localhost:3003/',
     expressionsIMG: require('../images/expressions.png'),
     expressions: ['呵呵', '哈哈', '吐舌', '啊', '酷', '怒', '开心', '汗', '泪', '黑线',
                      '鄙视', '不高兴', '真棒', '钱', '疑问', '阴险', '吐', '咦', '委屈', '花心', 

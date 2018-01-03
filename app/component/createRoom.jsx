@@ -26,8 +26,9 @@ export default class createRoom extends Component {
 		if (!roomName) return;
 		this.props.createRoomAction({
 			roomName: roomName,
-			account: localStorage.getItem('account')
-		})
+			account: TBZ.USER_ACCOUNT
+		});
+		this.props.setPageState('MESSAGELIST-PAGE');
 	}
 	componentDidMount(){
 		

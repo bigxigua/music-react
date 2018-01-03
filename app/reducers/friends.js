@@ -1,26 +1,22 @@
 
 let defaultState = {
-	userLists: [],
-	// applyLists: []
+	searchResults: []
 }
 
 function applyFriends(state, action){
-	console.log(action)
-	let _userLists = state.userLists.concat([]);
-	// let _applyLists = state.applyLists.concat([]);
+	let _userLists = state.searchResults.concat([]);
 	_userLists.forEach((item) => {
 		if(item.account == action.result.account) {
-			item.notify.push(action.result);
+			item.myApplyLists = action.result.myApplyLists;
 		}
 	})
-	// _applyLists.push(action.result);
-	return Object.assign({}, state, {userLists: _userLists})
+	return Object.assign({}, state, {searchResults: _userLists})
 }
 
 export default function pageState(state = defaultState, action) {
 	switch(action.type) {
 		case 'SEARCH_USERS': {
-			return Object.assign({},state, {userLists: action.userLists})
+			return Object.assign({},state, {searchResults: action.userLists})
 		}
 		case 'APPLY_FRIEND': {
 			return applyFriends(state, action)

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import '../scss/addfriends.scss';
 import classNames from 'classnames';
 
+let myApplyLists = [];
+
 export default class AddFriends extends Component {
 	constructor(props){
 		super(props);
@@ -26,29 +28,31 @@ export default class AddFriends extends Component {
 		if(!nickname) return;
 		this.props.searchUsers(nickname);
 	}
-	verifyFriends(notifies){
-		console.log(notifies)
-		let bool = false;
-		notifies.forEach((item) => {
-			item.account == TBZ.USER_ACCOUNT ? (bool = true) : {};
-		}) 
-		return bool;
-	}
-	applyFriend(info){ 
-		this.props.applyFriend(info)
+	verifyFriends(account){
+		let tmp = false;
+		myApplyLists = this.props.myApplyLists;
+		account == TBZ.USER_ACCOUNT ? (tmp = true) : {};
+		myApplyLists.map((item) => {
+			item.account == account ? (tmp = true) : {};
+		});
+		return tmp;
+	} 
+	applyFriend(accounts, e){
+		e.target.style.display = 'none';
+		this.props.applyFriend(accounts)
 	}
 	render(){
 		const slideClassNames = classNames({
 			'createRoom-head-slide': this.props.currentPage == 'ADDFRIENDS-PAGE'
 		})
 		const lists = this.props.searchResults.map((item, index) => {
-			let isFriendship = this.verifyFriends(item.notify);
+			let isSended = this.verifyFriends(item.account);
 			let addButton;
 			let accounts = {
 				friendAccount: item.account + '',
 				selfAccount: TBZ.USER_ACCOUNT
 			}
-			isFriendship ? (addButton = null) : (addButton = (<div className='addfriends-add' onClick={() => {this.applyFriend(accounts)}}>添加</div>));
+			isSended ? (addButton = null) : (addButton = (<div className='addfriends-add' onClick={(e) => {this.applyFriend(accounts,e)}}>添加</div>));
 			return (
 				<li key={index}>
 					<img src={item.avatar || TBZ.DEFAULT_AVATAR} className="addfriends-avatar" />

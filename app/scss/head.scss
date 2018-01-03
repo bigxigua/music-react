@@ -53,6 +53,22 @@
 		position: relative;
 	}
 }
+.Header-icon-message{
+	position: relative;
+}
+.message-number{
+	position: absolute;
+	width: .5rem;
+	height: .5rem;
+	text-align: center;
+	line-height: .5rem;
+	color: #fff;
+	font-size: .2rem;
+	border-radius: 100%;
+	background: #35c328;
+	top: 0;
+	left: 0;
+}
 .Header-Menu-container{
 		margin-left: 0.4rem;
 		margin-top: 0.5rem;

@@ -8,7 +8,8 @@ module.exports = {
 				createTime: lists[i].createTime,
 				roomInfo: lists[i].roomInfo,
 				avatar: lists[i].avatar,
-				createrUserName: lists[i].createrUserName
+				createrUserName: lists[i].createrUserName,
+				isPrivate: lists[i].isPrivate
 			})
 		}
 		return rooms;

@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import '../scss/head.scss';
 
-const MessageIcon = () => {
+const MessageIcon = (props) => {
+	const notifies = props.notifies;
+	if(!notifies) return null;
+	const notifyIcon = notifies.length > 0 ? (<span className="message-number">{notifies.length}</span>) : null;
 	return (
-			<div className="Header-icon-message">
+			<div className="Header-icon-message" onClick={props.gotoNotifyPage}>
 				<i className="w-icon-message"></i>
+				{notifyIcon}
 			</div> 
 		)
 }
@@ -48,11 +52,11 @@ export default class Head extends Component {
 		super(props);
 		this.showUserCenter = this.showUserCenter.bind(this);
 		this.showChatLists = this.showChatLists.bind(this);
-		this.getUserInfo = this.getUserInfo.bind(this);
 		this.toggleSettingCard = this.toggleSettingCard.bind(this);
 		this.gotoCreateRoom = this.gotoCreateRoom.bind(this);
 		this.gotoAddfriends = this.gotoAddfriends.bind(this);
 		this.gotoFriendsListsPage = this.gotoFriendsListsPage.bind(this);
+		this.gotoNotifyPage = this.gotoNotifyPage.bind(this);
 		this.state = {
 			showSettingCard: false,
 			initAnimate: false
@@ -79,9 +83,6 @@ export default class Head extends Component {
 			showSettingCard: false
 		})
 	}
-	getUserInfo(){
-		return this.props.getUserInfo(localStorage.getItem('account'))
-	}
 	toggleSettingCard(){
 		const { showSettingCard } = this.state;
 		this.setState({
@@ -94,9 +95,11 @@ export default class Head extends Component {
 	gotoFriendsListsPage(){
 		this.props.setPageState('FRIENDSLISTS-PAGE');
 	}
+	gotoNotifyPage(){
+		this.props.setPageState('NOTIFY-PAGE');
+	}
 	render(){
-		this.getUserInfo();
-		const {onlineState, avatar} = this.props;
+		const {onlineState, avatar, notify} = this.props.userInfo;
 		const { isChatList, title } = this.props.data;
 		const {showSettingCard, initAnimate} = this.state;
 		const settingCardClassNames = classNames({
@@ -105,7 +108,7 @@ export default class Head extends Component {
 		})
 		const iconList = isChatList ?
 											( <div><SearchIcon /><UserSettingIcon /><MoreIcon toggleSettingCard={this.toggleSettingCard} /></div>):
-											( <div><MessageIcon /><MoreIcon toggleSettingCard={this.toggleSettingCard} /><FriendsListIcon handle={this.gotoFriendsListsPage} /></div>)
+											( <div><MessageIcon gotoNotifyPage={this.gotoNotifyPage} notifies={notify} /><MoreIcon toggleSettingCard={this.toggleSettingCard} /><FriendsListIcon handle={this.gotoFriendsListsPage} /></div>)
 											
 		const Element = isChatList ? 
 		(<div className="Header-Menu-container" onClick={this.showChatLists}>

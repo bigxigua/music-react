@@ -1,6 +1,6 @@
 import io from 'socket.io-client'
 
-export const socket = io('http://172.22.125.3:3003', {
+export const socket = io('http://localhost:3003', {
 	'force new connection': true
 });
 
@@ -23,15 +23,24 @@ export const deleteChatItem = (index) => {
 //往当前房间消息队列里添加消息
 export const addMessage = (message) => {
 	return {
-		type: 'ADD_MESSAGE', 
+		type: 'ADD_MESSAGE',
 		message //对象 必要roomID/content/type/nickname
 	}
 }
 
-//发送消息
+//发送消息(大群聊)
 export const sendMessage = (message) => {
 	return new Promise((resolve, reject) => {
 		socket.emit('message', message, (body) => {
+			body.isError ? (reject(body)) : (resolve(body))
+		})
+	})
+}
+
+//发送消息(私聊)
+export const sendPrivateMessage = (message) => {
+	return new Promise((resolve, reject) => {
+		socket.emit('privateMessage', message, (body) => {
 			body.isError ? (reject(body)) : (resolve(body))
 		})
 	})
@@ -45,16 +54,29 @@ export const setUserCardInfo = (info) => {
 	}
 }
 
+//获取登陆用户的所有信息
+export const _getUserInfo_ = (info) => {
+	return {
+		type: 'GET_USER_INFO',
+		info //登陆的用户信息
+	}
+}
+
 //获取登陆用户信息
 export const getUserInfo = (account) => {
 	return (dispatch) => {
 		return new Promise((resolve, reject) => {
-			socket.emit('getUserInfo', account, (body) => {
-				if(!body.isError){
-					dispatch(setUserCardInfo(body));
-				}
-				body.isError ? (reject(body)) : (resolve(body))
-			})
+			if (typeof account == 'object' && account) {
+				dispatch(_getUserInfo_(account));
+				resolve(account)
+			} else {
+				socket.emit('getUserInfo', account, (body) => {
+					if (!body.isError) {
+						dispatch(_getUserInfo_(body));
+					}
+					body.isError ? (reject(body)) : (resolve(body))
+				})
+			}
 		})
 	}
 }
@@ -63,7 +85,7 @@ export const getUserInfo = (account) => {
 export const _createRoom = (info) => {
 	return {
 		type: 'ADD_ROOM_LISTS',
-		info 
+		info
 	}
 }
 
@@ -72,9 +94,8 @@ export const createRoomAction = (info) => {
 	return (dispatch) => {
 		return new Promise((resolve, reject) => {
 			socket.emit('createRoom', info, (body) => {
-				if(!body.isError){
+				if (!body.isError) {
 					dispatch(_createRoom(body));
-					dispatch(setPageState('MESSAGELIST-PAGE'));
 				}
 				body.isError ? (reject(body)) : (resolve(body))
 			})
@@ -95,7 +116,7 @@ export const getRoomLists = (token) => {
 	return (dispatch) => {
 		return new Promise((resolve, reject) => {
 			socket.emit('getRoomLists', token, (body) => {
-				if(!body.isError){
+				if (!body.isError) {
 					dispatch(_getRoomLists(body.userRoomLists))
 					dispatch(getAllRoomHistories(body.histories))
 				}
@@ -134,7 +155,7 @@ export const searchUsers = (nickname) => {
 	return (dispatch) => {
 		return new Promise((resolve, reject) => {
 			socket.emit('searchUsers', nickname, (body) => {
-				if(!body.isError){
+				if (!body.isError) {
 					dispatch(_searchUsers_(body.userLists))
 				}
 				body.isError ? (reject(body)) : (resolve(body))
@@ -150,17 +171,46 @@ export const _applyFriend_ = (result) => {
 		result
 	}
 }
-//添加好友
+//申请加好友
 export const applyFriend = (accounts) => {
 	return (dispatch) => {
 		return new Promise((resolve, reject) => {
 			socket.emit('applyFriend', accounts, (body) => {
-				if(!body.isError){
+				if (!body.isError) {
 					dispatch(_applyFriend_(body.result))
 				}
 				body.isError ? (reject(body)) : (resolve(body))
 			})
 		})
+	}
+}
+
+//添加好友
+export const _addFriend_ = (result) => {
+	return {
+		type: 'ADD_FRIEND',
+		result
+	}
+}
+//添加好友
+export const addFriend = (accounts) => {
+	return (dispatch) => {
+		return new Promise((resolve, reject) => {
+			socket.emit('addFriend', accounts, (body) => {
+				if (!body.isError) {
+					dispatch(_addFriend_(body.result))
+				}
+				body.isError ? (reject(body)) : (resolve(body))
+			})
+		})
+	}
+}
+
+//更新当前用户的申请列表
+export const updateApplyLists = (myApplyLists) => {
+	return {
+		type: 'APPLY_FRIEND',
+		myApplyLists
 	}
 }
 

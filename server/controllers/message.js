@@ -10,7 +10,8 @@ const callbackError = function (cb, msg) {
 }
 
 module.exports = {
-	saveMessage: async(message, socket, cb) => {
+	saveMessage: async(message, socket, SocketsMap, cb) => {
+		console.log(message)
 		//1.判断发消息的用户是否存在
 		//2.保存消息到聊天记录表
 		//3.emit socket 到client
@@ -32,7 +33,12 @@ module.exports = {
 				message.timestamp = Date.now();
 				message.nickname = user.nickname;
 				message.owner = user;
-				socket.broadcast.to(message.roomName).emit('newMessage', message);
+				if(message.isPrivate) {
+					console.log('正在和' + message.roomName + '私聊');
+					SocketsMap[message.roomNam] ? (SocketsMap[message.roomNam].emit('newMessage', message)) : {};
+				} else {
+					socket.broadcast.to(message.roomName).emit('newMessage', message);
+				}
 				message.isSelf = true;
 				socket.emit('newMessage', message);
 				console.log('----------------------成功存储消息')

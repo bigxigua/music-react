@@ -5,7 +5,8 @@ function mapStateToProps(state) {
 	return {
 		nickname: state.setUserInfo.nickname,
 		avatar: state.setUserInfo.avatar,
-		currentRoomName: state.setUserInfo.currentRoomName
+		currentRoomName: state.setUserInfo.currentRoomName,
+		roomLists: state.roomList.roomLists
 	}
 }
 

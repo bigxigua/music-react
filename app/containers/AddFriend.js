@@ -6,14 +6,16 @@ import {
 	setPageState,
 	createRoomAction,
 	searchUsers,
-	applyFriend
+	updateApplyLists,
+	applyFriend,
+	getUserInfo
 } from '../actions/index.js'
 
 function mapStateToProps(state) {
 	return {
 		currentPage: state.setPageState.pageState,
-		searchResults: state.friends.userLists,
-		friendLists: state.friends.friendLists,
+		searchResults: state.friends.searchResults,
+		myApplyLists: state.setUserInfo.userInfo.myApplyLists
 	}
 }
 
@@ -30,6 +32,9 @@ function mapDispatchToProps(dispatch) {
 		},
 		applyFriend: (accounts) => {
 			dispatch(applyFriend(accounts))
+		},
+		updateUserInfo: (account) => {
+			dispatch(getUserInfo(account))
 		}
 	}
 }

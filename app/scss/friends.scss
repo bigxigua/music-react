@@ -61,15 +61,20 @@
 	}
 
 }
-.friends-icons-slide{
+
+.friends-icons-slide {
 	@include transform(translate3d(0, 0, 0))
 }
 
 .friends-shadow {
 	width: 100%;
-	height: .34rem;
-	background: #F3F1F4;
-	box-shadow: 0 -2px 0 #E5E4E7;
+    height: .5rem;
+    background: #F3F1F4;
+    font-size: .2rem;
+    color: gray;
+    padding-left: .2rem;
+    line-height: .5rem;
+    -webkit-font-smoothing: antialiased;
 }
 
 .friends-lists {
@@ -95,19 +100,21 @@
 			position: absolute;
 			top: .2rem;
 		}
-	
+
 	}
 
 }
-.friends-name{
+
+.friends-name {
 	position: absolute;
 	font-size: .4rem;
 	color: #727073;
-	    left: 2rem;
-    top: .47rem;
-    text-align: left;
+	left: 2rem;
+	top: .47rem;
+	text-align: left;
 }
-.friends-sign{
+
+.friends-sign {
 	position: absolute;
 	font-size: .35rem;
 	color: #ACAAAD;
@@ -115,7 +122,8 @@
 	left: 2rem;
 	top: 1.2rem;
 }
-.friends-back{
+
+.friends-back {
 	width: 2rem;
 	height: 1rem;
 	background: green;
@@ -128,4 +136,51 @@
 	left: 50%;
 	@include transform(translateX(-50%));
 	bottom: 0;
+}
+
+.blue-box {
+	width: 100%;
+	height: 2.8rem;
+	background-color: #00bfa5;
+	overflow: hidden;
+	.blue-slide-normal{
+		@include transform(translate3d(-5rem, 0, 0));
+		-webkit-transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 100ms;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 100ms;
+	}
+	.blue-slide{
+		@include transform(translate3d(0,0,0));
+	}
+	.w-icon-arrow-left {
+		margin-left: 0.2rem;
+		position: relative;
+		margin-left: 1rem;
+		top: 0.1rem;
+		float: left;
+		color: white;
+		font-size: 0.5rem;
+		margin-top: 1.3rem;
+		font-weight: lighter;
+	}
+	p{
+		float: left;
+    color: white;
+    font-size: 0.5rem;
+    margin-top: 1.3rem;
+    font-weight: lighter;
+	}
+}
+
+.friends-status{
+	position: absolute;
+    width: 2rem;
+    height: .8rem;
+    border: 1px solid #00bfa5;
+    right: 0;
+    border-radius: .2rem;
+    top: .6rem;
+    text-align: center;
+    font-size: .4rem;
+    line-height: .8rem;
+    color: #00bfa5;
 }

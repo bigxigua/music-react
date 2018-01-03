@@ -16,20 +16,21 @@ const callbackSuccess = function (cb, info) {
 	cb(info)
 }
 
+let SocketsMap = {};
+
 module.exports = function (io) {
 	io.on('connection', (socket) => {
 		socket.join(config.INIT_ROOM);
-		
+
+		socket.on('joinRooms', (account, cb) => {
+			SocketsMap[account] = socket;
+		})
+
 		socket.on('message', (msg, cb) => {
-			message.saveMessage(msg, socket, cb).catch((err) => {
+			message.saveMessage(msg, socket, SocketsMap, cb).catch((err) => {
 				callbackError(cb, err)
 			})
 		});
-
-		socket.on('joinRooms', (account, cb) => {
-			console.log(account)
-			socket.join(account);
-		})
 
 		socket.on('getUserInfo', (account, cb) => {
 			user.getUserInfo(account).then((info) => {
@@ -40,7 +41,7 @@ module.exports = function (io) {
 		});
 
 		socket.on('createRoom', (roomInfo, cb) => {
-			room.createRoom(socket, roomInfo).then((info) => {
+			room.createRoom(socket, roomInfo,SocketsMap).then((info) => {
 				callbackSuccess(cb, info)
 			}).catch((err) => {
 				callbackError(cb, err)
@@ -64,7 +65,15 @@ module.exports = function (io) {
 		});
 
 		socket.on('applyFriend', (account, cb) => {
-			user.applyFriend(account, socket).then((result) => {
+			user.applyFriend(account, SocketsMap).then((result) => {
+				callbackSuccess(cb, result)
+			}).catch((err) => {
+				callbackError(cb, err)
+			})
+		});
+
+		socket.on('addFriend', (accounts, cb) => {
+			user.addFriend(accounts).then((result) => {
 				callbackSuccess(cb, result)
 			}).catch((err) => {
 				callbackError(cb, err)
