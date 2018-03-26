@@ -1,4 +1,8 @@
 (function() {
+  var BODY = document.body;
+  var ROOT = document.querySelector('html');
+  var UIWIDTH = 750;
+
   String.prototype.format = function() {
     var str = this;
     for (var i = 0; i < arguments.length; i++) {
@@ -34,6 +38,15 @@
       var u = navigator.userAgent,
         app = navigator.appVersion;
       return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+    },
+    calcRootSize: function () {
+      var deviceWidth = window.innerWidth;
+      var rootSize = 80 * deviceWidth / UIWIDTH;
+      ROOT.style.fontSize = rootSize + 'px';
+      if (!window._resizeListener_) {
+        window.addEventListener('resize', TBZ.calcRootSize, false);
+        window._resizeListener_ = true;
+      }
     },
     supportPushState: window.history && window.history.pushState && window.history.replaceState && !navigator.userAgent.match(/((iPod|iPhone|iPad).+\bOS\s+[1-4]\D|WebApps\/.+CFNetwork)/)
   }

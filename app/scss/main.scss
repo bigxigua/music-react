@@ -10,18 +10,24 @@ html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquot
     vertical-align: baseline;
     background: transparent;
 }
-html,body{
+
+html, body {
     // width: 100%;
     // height: 100vh;
     // overflow: hidden;
     -webkit-overflow-scrolling: touch;
 }
-article, aside, figure, footer, header, nav, section, details, summary {display: block;}
+
+article, aside, figure, footer, header, nav, section, details, summary {
+    display: block;
+}
 
 /* consider resetting the default cursor: https://gist.github.com/murtaugh/5247154 */
 
 /* Responsive images and other embedded objects */
+
 /* if you don't have full control over `img` tags (if you have to overcome attributes), consider adding height: auto */
+
 /*img,
 object,
 embed {max-width: 100%;}*/
@@ -38,29 +44,68 @@ embed {max-width: 100%;}*/
 /* we use a lot of ULs that aren't bulleted.
     you'll have to restore the bullets within content,
     which is fine because they're probably customized anyway */
-ul {list-style: none;}
+ul {
+    list-style: none;
+}
 
-blockquote, q {quotes: none;}
+blockquote, q {
+    quotes: none;
+}
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {content: ''; content: none;}
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
 
-a {margin: 0; padding: 0; font-size: 100%; vertical-align: baseline; background: transparent;}
+a {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
 
-del {text-decoration: line-through;}
+del {
+    text-decoration: line-through;
+}
 
-abbr[title], dfn[title] {border-bottom: 1px dotted #000; cursor: help;}
+abbr[title], dfn[title] {
+    border-bottom: 1px dotted #000;
+    cursor: help;
+}
 
 /* tables still need cellspacing="0" in the markup */
-table {border-collapse: separate; border-spacing: 0;}
-th {font-weight: bold; vertical-align: bottom;}
-td {font-weight: normal; vertical-align: top;}
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
 
-hr {display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0;}
+th {
+    font-weight: bold;
+    vertical-align: bottom;
+}
 
-input, select {vertical-align: middle; outline: none; -webkit-appearance: none; -webkit-tap-highlight-color: rgba(0,0,0,0)}
+td {
+    font-weight: normal;
+    vertical-align: top;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+input, select {
+    vertical-align: middle;
+    outline: none;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    border: none;
+}
 
 pre {
     white-space: pre; /* CSS2 */
@@ -69,46 +114,84 @@ pre {
     word-wrap: break-word; /* IE */
 }
 
-input[type="radio"] {vertical-align: text-bottom;}
-input[type="checkbox"] {vertical-align: bottom;}
-.ie7 input[type="checkbox"] {vertical-align: baseline;}
-.ie6 input {vertical-align: text-bottom;}
+input[type="radio"] {
+    vertical-align: text-bottom;
+}
 
-select, input, textarea {font: 99% sans-serif;}
+input[type="checkbox"] {
+    vertical-align: bottom;
+}
 
-table {font-size: inherit; font: 100%;}
+.ie7 input[type="checkbox"] {
+    vertical-align: baseline;
+}
 
-small {font-size: 85%;}
+.ie6 input {
+    vertical-align: text-bottom;
+}
 
-strong {font-weight: bold;}
+select, input, textarea {
+    font: 99% sans-serif;
+}
 
-td, td img {vertical-align: top;}
+table {
+    font-size: inherit;
+    font: 100%;
+}
+
+small {
+    font-size: 85%;
+}
+
+strong {
+    font-weight: bold;
+}
+
+td, td img {
+    vertical-align: top;
+}
 
 /* Make sure sup and sub don't mess with your line-heights http://gist.github.com/413930 */
-sub, sup {font-size: 75%; line-height: 0; position: relative;}
-sup {top: -0.5em;}
-sub {bottom: -0.25em;}
+sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
 
 /* standardize any monospaced elements */
-pre, code, kbd, samp {font-family: monospace, sans-serif;}
+pre, code, kbd, samp {
+    font-family: monospace, sans-serif;
+}
 
 /* hand cursor on clickable elements */
-.clickable,
-label,
-input[type=button],
-input[type=submit],
-input[type=file],
-button {cursor: pointer;}
+.clickable, label, input[type=button], input[type=submit], input[type=file], button {
+    cursor: pointer;
+}
 
 /* Webkit browsers add a 2px margin outside the chrome of form elements */
-button, input, select, textarea {margin: 0;outline:0}
+button, input, select, textarea {
+    margin: 0;
+    outline: 0
+}
 
 /* make buttons play nice in IE */
-button,
-input[type=button] {width: auto; overflow: visible;}
+button, input[type=button] {
+    width: auto;
+    overflow: visible;
+}
 
 /* scale images in IE7 more attractively */
-.ie7 img {-ms-interpolation-mode: bicubic;}
+.ie7 img {
+    -ms-interpolation-mode: bicubic;
+}
 
 /* prevent BG image flicker upon hover
    (commented out as usage is rare, and the filter syntax messes with some pre-processors)
@@ -116,7 +199,11 @@ input[type=button] {width: auto; overflow: visible;}
 */
 
 /* let's clear some floats */
-.clearfix:after { content: " "; display: block; clear: both; }
+.clearfix:after {
+    content: " ";
+    display: block;
+    clear: both;
+}
 
 a {
     color: #666;
@@ -128,32 +215,35 @@ a:hover {
 }
 
 body, button, input, select, textarea {
-    font: 12px \5FAE\8F6F\96C5\9ED1,arial,\5b8b\4f53;
+    font: 12px \5FAE\8F6F\96C5\9ED1, arial, \5b8b\4f53;
 }
 
-.container{
+.container {
     width: 100%;
     height: 100vh;
     overflow: hidden;
-
 }
-.container-box{
+
+.container-box {
     width: 100%;
     height: 100vh;
-    -webkit-transition: all .35s cubic-bezier(.23,1,.32,1) 0ms;
-    transition: all .35s cubic-bezier(.23,1,.32,1) 0ms;
+    -webkit-transition: all .35s cubic-bezier(.23, 1, .32, 1) 0ms;
+    transition: all .35s cubic-bezier(.23, 1, .32, 1) 0ms;
 }
-.MessageList-container-hide{
-    @include transform(translate3d(-100%, 0 0))
-}
-.Personal-container-hide{
-    @include transform(translate3d(-100%, 0 0))
-}
-.ChatRoom-container-hide{
+
+.MessageList-container-hide {
     @include transform(translate3d(-100%, 0 0))
 }
 
-.animated{
-  -webkit-transition: all .5s cubic-bezier(.23,1,.32,1) 0ms;
-  transition: all .5s cubic-bezier(.23,1,.32,1) 0ms;
+.Personal-container-hide {
+    @include transform(translate3d(-100%, 0 0))
+}
+
+.ChatRoom-container-hide {
+    @include transform(translate3d(-100%, 0 0))
+}
+
+.animated {
+    -webkit-transition: all .5s cubic-bezier(.23, 1, .32, 1) 0ms;
+    transition: all .5s cubic-bezier(.23, 1, .32, 1) 0ms;
 }

@@ -1,0 +1,6 @@
+#启动步骤
+node v8.9.4w
+[1] 本地开发
+1. 根目录 执行 npm start
+2. /app目录 执行 npm start
+3. 打开mongodb 运行mongod mongo 

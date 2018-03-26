@@ -6,7 +6,7 @@ import './global/global.js'
 import store from './store/configureStore.js';
 
 import './scss/main.scss'
-import 'amfe-flexible'
+// import 'amfe-flexible'
 import '../node_modules/uiw-iconfont/fonts/w-iconfont.css'
 
 import Bundle from './Page/bundle.jsx'
@@ -14,6 +14,8 @@ import Bundle from './Page/bundle.jsx'
 import Index from 'bundle-loader?lazy!./Page/index/index.js';
 import Login from './Page/login/login.js';
 import Register from './Page/register/Register.js'
+
+TBZ.calcRootSize();
 
 const IndexBundle = () => (
 	<Bundle load={Index}>
