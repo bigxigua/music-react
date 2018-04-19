@@ -11,7 +11,7 @@ function applyFriends(state, action){
 		}
 	})
 	return Object.assign({}, state, {searchResults: _userLists})
-}
+} 
 
 export default function pageState(state = defaultState, action) {
 	switch(action.type) {

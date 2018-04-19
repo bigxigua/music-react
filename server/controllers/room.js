@@ -52,7 +52,6 @@ module.exports = {
 		if (verifyResult) {
 			let user = await User.findOne({account: verifyResult.user}).populate('rooms');
 			if (user) {
-
 				let userRoomLists = util.getRoomLists(user.rooms);
 				let roomNameArr = util.getRoomNameArr(user.rooms);
 				let histories = await History.find({roomName: {$in: roomNameArr} }).populate('owner');
