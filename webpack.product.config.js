@@ -31,13 +31,6 @@ module.exports = {
       exclude: /node_modules/,
       loader: ['jsx-loader', 'babel-loader']
     }, {
-      test: /\.less$/,
-      exclude: /^node_modules$/,
-      loader: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: ['css-loader', 'less-loader']
-      })
-    }, {
       test: /\.scss$/,
       exclude: /^node_modules$/,
       loader: ExtractTextPlugin.extract({
@@ -87,4 +80,4 @@ module.exports = {
       includeSourcemap: false
     })
   ]
-}
+};
