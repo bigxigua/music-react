@@ -13,7 +13,7 @@ import Bundle from './Page/bundle.jsx'
 
 import Index from 'bundle-loader?lazy!./Page/index/index.js';
 import Login from './Page/login/login.js';
-import Register from './Page/register/Register.js'
+import Register from './Page/register/register.js'
 
 TBZ.calcRootSize();
 

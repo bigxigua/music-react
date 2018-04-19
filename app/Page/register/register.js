@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import Register from './Register.jsx'
+import Register from './register.jsx'
 
 import { 
 	
