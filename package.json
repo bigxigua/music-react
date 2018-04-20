@@ -7,7 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --public --config ./webpack.dev.config.js",
     "build": "webpack --config ./webpack.product.config.js",
-    "fuck": "webpack-dev-server --config ./webpack.product.config.js",
     "dll": "webpack -p --progress --config ./webpack.config.dll.js"
   },
   "author": "",
