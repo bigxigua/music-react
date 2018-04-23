@@ -24,7 +24,7 @@ module.exports = function (io) {
 
 		socket.on('joinRooms', (account, cb) => {
 			SocketsMap[account] = socket;
-		})
+		});
 
 		socket.on('message', (msg, cb) => {
 			message.saveMessage(msg, socket, SocketsMap, cb).catch((err) => {

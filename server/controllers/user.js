@@ -25,7 +25,7 @@ const _genInfo = function(obj) {
 var ERROR = {
 	isError: true,
 	message: '服务器出错了...'
-}
+};
 
 module.exports = {
 	createUser: async (account, password, nickname) => {
@@ -47,7 +47,7 @@ module.exports = {
 			account: account,
 			password: password,
 			nickname: nickname,
-			avatar: 'http://www.tbzhong.cn/default_avatar/' + parseInt(Math.random()*10) + '.jpg',
+			avatar: 'http://www.tbzhong.cn:8080/default_avatar/' + parseInt(Math.random()*10) + '.jpg',
 			sex: '未知',
 			info: '',
 			friends: [],
@@ -55,7 +55,7 @@ module.exports = {
 			myApplyLists: [],
 			onlineState: 1,
 			rooms: [room._id]
-		})
+		});
 		if (newUser) {
 			room.users.push(newUser._id);
 			await room.save();

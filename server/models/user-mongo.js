@@ -16,7 +16,7 @@ const user = new Schema({
 		type: Schema.Types.ObjectId, //房间号以room._id表示
 		ref: 'room' //关联room表
 	}]
-})
+});
 
 user.statics.findOneUser = function (option = {}) {
 	return new Promise((resolve, reject) => {
@@ -25,7 +25,7 @@ user.statics.findOneUser = function (option = {}) {
 			resolve(data[0]);
 		})
 	})
-}
+};
 
 user.statics.findAll = function (option = {}) {
 	return new Promise((resolve, reject) => {
@@ -34,7 +34,7 @@ user.statics.findAll = function (option = {}) {
 			resolve(data);
 		})
 	})
-}
+};
 
 user.statics.createUser = function (user) {
     return new Promise((resolve,reject) => {
@@ -43,6 +43,6 @@ user.statics.createUser = function (user) {
             resolve(result);
         })
     })
-}
+};
 
 module.exports = mongoose.model('user',user);

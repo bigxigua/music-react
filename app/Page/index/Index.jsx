@@ -74,7 +74,7 @@ export default class Index extends Component {
 		const { currentPage } = this.props;
 		// const currentPage = 'ADDFRIENDS-PAGE';
 		const MessageListData = {isChatList: currentPage === 'CHATROOM-PAGE'};
-		const ListItems = this.props.lists.map((item, index) =>{
+		const ListItems = this.props.lists.map((item) =>{
 				item.latestMessage = this.getLatestMessage(item.roomName);
 				return (<ChatItem 
 					data={item}

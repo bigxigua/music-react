@@ -5,27 +5,25 @@ const bluebird = require('bluebird');
 const bcrypt = require('bcrypt');
 const config = require('../config/init.js');
 const util = require('../util/util.js');
-const jwt = require('jsonwebtoken') //jsp 基于token的身份验证
+const jwt = require('jsonwebtoken'); //jwt 基于token的身份验证
 
 module.exports = {
 	createRoom: async (socket, info,SocketsMap) => {
-		console.log(info)
 		let user = await User.findOne({account: info.account});
 		let hasRoom = await Room.findOne({name: info.roomName});
-		//用户创建房间数量限制（待处理
-		console.log('hasRoom:',hasRoom)
+		//用户创建房间数量限制（待处理) TODO
 		if (user && !hasRoom) {
 			let room = new Room(Object.assign({},
 					{name: info.roomName, createTime: Date.now()},
 					{createrUser: user._id, users: [user._id], avatar: '', createrUserName: user.nickname, isPrivate: info.isPrivateRoom}
-			))
+			));
 			user.rooms.push(room._id);
 			user.save();
 			room.save();
 			socket.join(room.name);
 			console.log(info.isPrivateRoom,SocketsMap[info.roomName],Object.keys(SocketsMap))
 			if(info.isPrivateRoom && SocketsMap[info.roomName]) {
-				console.log('创建私聊房间成功--------------')
+				console.log('创建私聊房间成功--------------');
 				SocketsMap[info.roomName].emit('createPrivateRoom', info)
 			}
 			return {

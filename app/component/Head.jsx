@@ -87,7 +87,7 @@ export default class Head extends Component {
 		const { showSettingCard } = this.state;
 		this.setState({
 			 initAnimate: true
-		})
+		});
 		!this.props.data.isChatList ? (this.setState({
 			showSettingCard: !showSettingCard
 		})) : {};

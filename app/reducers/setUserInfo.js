@@ -1,6 +1,6 @@
 let defaultState = {
 	userInfo: {}
-}
+};
 
 export default function setUserInfo(state = defaultState, action) {
 	switch (action.type) {
