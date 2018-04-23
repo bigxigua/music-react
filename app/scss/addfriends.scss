@@ -12,21 +12,21 @@
 	width: 94%;
 	margin: auto;
 	border-radius: 0.1rem;
-	height: 1rem;
+	height: 0.9rem;
 	margin-top: 0.2rem;
 	position: relative;
 
 	input {
 		border: none;
 		outline: none;
-		width: 7rem;
+		width: 4.6rem;
 		margin-left: .35rem;
 		display: block;
 		float: left;
 		height: 85%;
 		box-sizing: border-box;
-		padding-top: .25rem;
-		font-size: .35rem;
+		padding-top: .2rem;
+		font-size: .3rem;
 		color: gray;
 	}
 
@@ -40,7 +40,7 @@
 	color: #fff;
 	background: #68bC3e;
 	text-align: center;
-	line-height: 1rem;
+	line-height: 0.9rem;
 	position: absolute;
 	right: 0;
 	border-bottom-right-radius: 0.1rem;
@@ -57,10 +57,10 @@
 	margin-top: .2rem;
 
 	p {
-		font-size: 0.3rem;
+		font-size: 0.25rem;
 		color: #797065;
 		padding-left: 0.3rem;
-		margin-top: .6rem;
+		margin-top: .25rem;
 		margin-bottom: 0.2rem;
 	}
 
@@ -72,9 +72,10 @@
 			width: 93%;
 			display: block;
 			margin: auto;
-			height: 2rem;
+			height: 1.5rem;
 			position: relative;
 			border-top: 1px solid #DFDCCE;
+			border-bottom: 1px solid #DFDCCE;
 		}
 
 	}
@@ -82,8 +83,8 @@
 }
 
 .addfriends-avatar {
-	width: 1.6rem;
-	height: 1.6rem;
+	width: 1rem;
+	height: 1rem;
 	border-radius: 100%;
 	position: absolute;
 	top: .2rem;
@@ -91,29 +92,28 @@
 
 .addfriends-right {
 	position: absolute;
-	left: 1.9rem;
+	left: 1.2rem;
 	height: 100%;
 	overflow: hidden;
 	text-align: left;
 }
 
 .addfriends-name {
-	font-size: .45rem;
+	font-size: .35rem;
 	color: #585657;
-	margin-top: .2rem;
+	margin-top: .1rem;
 }
 
 .addfriends-icon {
-	height: .5rem;
-
+	margin-top: 0.04rem;
 	.sex {
 		background: #EE9DAE;
-		width: 1rem;
-		height: .5rem;
+		width: 0.8rem;
+		height: .4rem;
 		border-radius: .1rem;
 		color: #fff;
 		font-size: .4rem;
-		line-height: .5rem;
+		line-height: .4rem;
 		text-align: center;
 
 		.w-icon-man {
@@ -126,19 +126,20 @@
 }
 
 .addfriends-desc {
-	font-size: .4rem;
+	font-size: .3rem;
 	color: #8c8a8d;
+	margin-top: 0.05rem;
 }
 .addfriends-add{
-    position: absolute;
-    right: 0;
-    width: 2rem;
-    background: #68bC3e;
-    height: .8rem;
-    border-radius: .1rem;
-    color: #fff;
-    text-align: center;
-    line-height: .8rem;
-    font-size: .4rem;
-    top: .6rem;
+	position: absolute;
+	right: 0;
+	width: 1.6rem;
+	background: #68bC3e;
+	height: .6rem;
+	border-radius: .1rem;
+	color: #fff;
+	text-align: center;
+	line-height: .6rem;
+	font-size: .3rem;
+	top: .4rem;
 }

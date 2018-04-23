@@ -1,12 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter as Router, Route,Link} from 'react-router-dom'
+import { BrowserRouter as Router, Route} from 'react-router-dom'
 import { Provider } from 'react-redux'
 import './global/global.js' 
 import store from './store/configureStore.js';
 
 import './scss/main.scss'
-// import 'amfe-flexible'
 import '../node_modules/uiw-iconfont/fonts/w-iconfont.css'
 
 import Bundle from './Page/bundle.jsx'
@@ -21,7 +20,7 @@ const IndexBundle = () => (
 	<Bundle load={Index}>
 		{(IndexBundle) => <IndexBundle />}
 	</Bundle>
-)
+);
 
 class App extends React.Component {
 	constructor(props) {

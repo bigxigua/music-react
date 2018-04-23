@@ -8,3 +8,11 @@
 	overflow-x: hidden;
 	overflow-y: scroll;
 }
+.ChatBox{
+	width: 100%;
+	position: relative;
+	-webkit-overflow-scrolling: touch;
+	height: calc(100vh - 2.6rem);
+	background-size: cover;
+	background: #fff;
+}

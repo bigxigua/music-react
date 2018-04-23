@@ -37,11 +37,3 @@
 .page-container-show{
 	@include transform(translateX(0));
 }
-.ChatBox{
-	width: 100%;
-	position: relative;
-	-webkit-overflow-scrolling: touch;
-	height: calc(100vh - 3.1rem);
-	background-size: cover;
-	background: #fff;
-}

@@ -7,16 +7,16 @@ import reqwest from 'reqwest';
 const Toast = (props) => {
 	let text = props.text;
 	const toastClass = classNames({
-		'Toast-container animated': true,
-		'hideToast': text == '',
+		'Toast-container': true,
+		'hideToast': text === '',
 		'showToast': text !== ''
-	})
+	});
 	return (
 		<div className={toastClass}>
-			<span>{props.text}</span>
+			<span>{props.text }</span>
 		</div>
 	)
-}
+};
 
 export default class FormContent extends Component {
 	constructor(props){
@@ -24,7 +24,7 @@ export default class FormContent extends Component {
 		this.state = {
 			warnningText: '',
 			showwToast: false
-		}
+		};
 		this.confirmSubmission = this.confirmSubmission.bind(this);
 	}
 	checkAccount(){
@@ -42,16 +42,16 @@ export default class FormContent extends Component {
 	confirmSubmission(){
 		const { formType } = this.props;
 		let checkNameResult, url = TBZ.DEFAULT_URL;
-		formType == 'register' ? (checkNameResult = this.checkName(), url += 'register') 
+		formType === 'register' ? (checkNameResult = this.checkName(), url += 'register')
 													 : (checkNameResult = true, url += 'login');
 
 		if(this.checkAccount() && this.checkPassword() && checkNameResult) {
 			let data = {
 				account: this.refs.account.value.trim(),
 				password: this.refs.password.value.trim()
-			}
+			};
 
-			formType == 'register' ? (data = Object.assign({}, data, {nickname: this.refs.name.value.trim()})) : {};
+			formType === 'register' ? (data = Object.assign({}, data, {nickname: this.refs.name.value.trim()})) : {};
 
 			reqwest({
 				url: url,
@@ -83,10 +83,10 @@ export default class FormContent extends Component {
 		this.setState({
 			warnningText: text,
 			showwToast: true
-		})
+		});
 		setTimeout(() => {
 			this.hideToastHandle()
-		}, 2000)
+		}, 2000);
 		return false;
 	}
 	hideToastHandle(){
@@ -120,7 +120,6 @@ export default class FormContent extends Component {
 							: (<Link to="/login">去登陆</Link>)
 						 }
 					</div>
-					
 					<Toast text={this.state.warnningText} />
 				</div>
 		)

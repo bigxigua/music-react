@@ -47,7 +47,7 @@ module.exports = {
 			account: account,
 			password: password,
 			nickname: nickname,
-			avatar: 'http://127.0.0.1:8080/default_avatar/' + parseInt(Math.random()*10) + '.jpg',
+			avatar: 'http://www.tbzhong.cn/default_avatar/' + parseInt(Math.random()*10) + '.jpg',
 			sex: '未知',
 			info: '',
 			friends: [],

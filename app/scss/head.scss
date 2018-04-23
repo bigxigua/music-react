@@ -3,7 +3,7 @@
 
 .Head{
 	width: 100%;
-	height: 1.6rem;
+	height: 1.38rem;
 	background: #eee;
 	position: relative;
 } 
@@ -14,19 +14,19 @@
 	float: left;
 	img{
 		border-radius: 100%;
-		width: 1rem;
-		height: 1rem;
+		width: .9rem;
+		height: .9rem;
 		@include border-radius(100%);
 		margin-left: 0.3rem;
-    margin-top: 0.26rem;
+    	margin-top: 0.26rem;
 	}
 	.Header-onlineState{
-		width: 0.3rem;
-		height: 0.3rem;
+		width: 0.2rem;
+		height: 0.2rem;
 		@include border-radius(100%);
 		background: rgb(53, 195, 40);
 		position: absolute;
-		left: 1.15rem;
+		left: 1rem;
 		top: 1rem;
 	}
 }
@@ -35,11 +35,12 @@
 	color: rgba(0,0,0,0.5);
 	overflow: hidden;
 	i{
-		font-size: 0.5rem;
+		font-size: 0.4rem;
 	}
 	div{
 		float: left;
 		margin-right: 0.35rem;
+		margin-top: -0.1rem;
 		div{
 			width: 1rem;
 			height: 1rem;
@@ -70,13 +71,13 @@
 	left: 0;
 }
 .Header-Menu-container{
-		margin-left: 0.4rem;
-		margin-top: 0.5rem;
+		margin-left: 0.5rem;
+		margin-top: 0.4rem;
 		color: #4b4b4b;
 	i{
 		float: left;
 		font-weight: bold;
-		font-size: 0.6rem;
+		font-size: 0.5rem;
 		margin-right: 0.3rem;
 	}
 	.Header-title{
@@ -87,23 +88,23 @@
 }
 .SettingCard-container{
 	position: absolute;
-	width: 3rem;
-	left: 6rem;
-  top: 1.2rem;
+	width: 2.4rem;
+	left: 4rem;
+  	top: 1.2rem;
 	background: #fff;
-  border: 1px solid #fefefe;
-  border-radius: 3px;
-  box-shadow: 0 1px 6px rgba(0,0,0,.117647), 0 1px 4px rgba(0,0,0,.117647);
-  z-index: 10;
-  @include transform(translate3d(6rem,0,0));
-  opacity: 0;
+    border: 1px solid #fefefe;
+    border-radius: 3px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.117647), 0 1px 4px rgba(0,0,0,.117647);
+    z-index: 10;
+    @include transform(translate3d(6rem,0,0));
+    opacity: 0;
 	ul{
 		width: 100%;
 		li{
 			padding: 0.2rem 0.4rem;
 			color: #666;
 			text-align: left;
-			font-size: 0.35rem;
+			font-size: 0.3rem;
 			&:hover{
 				background: #eee;
 			}

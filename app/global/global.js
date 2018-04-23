@@ -1,5 +1,4 @@
 (function() {
-  var BODY = document.body;
   var ROOT = document.querySelector('html');
   var UIWIDTH = 750;
 
@@ -25,7 +24,6 @@
                      '升起', '惊讶', '喷', '爱心', '心碎', '玫瑰', '礼物', '彩虹', '星星月亮', '太阳'],
     sortUp: function (arr, key) {
       return arr.sort(function (a, b) {
-
         return a[key]-b[key]
       })
     },
@@ -41,7 +39,7 @@
     },
     calcRootSize: function () {
       var deviceWidth = window.innerWidth;
-      var rootSize = 80 * deviceWidth / UIWIDTH;
+      var rootSize = 100 * deviceWidth / UIWIDTH;
       ROOT.style.fontSize = rootSize + 'px';
       if (!window._resizeListener_) {
         window.addEventListener('resize', TBZ.calcRootSize, false);

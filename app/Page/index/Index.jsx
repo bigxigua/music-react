@@ -35,7 +35,6 @@ export default class Index extends Component {
 
 	createPrivateRoom(){
 		socket.on('createPrivateRoom', (info) => {
-			console.log(info, '--------------------');
 			this.props.createRoomAction({
 				roomName: info.roomName,
 				account: TBZ.USER_ACCOUNT,
@@ -73,6 +72,7 @@ export default class Index extends Component {
 	}
 	render(){
 		const { currentPage } = this.props;
+		// const currentPage = 'ADDFRIENDS-PAGE';
 		const MessageListData = {isChatList: currentPage === 'CHATROOM-PAGE'};
 		const ListItems = this.props.lists.map((item, index) =>{
 				item.latestMessage = this.getLatestMessage(item.roomName);
@@ -83,34 +83,34 @@ export default class Index extends Component {
 					deleteItem={this.deleteItem} 
 					setPageState={this.setPageState} >
 					</ChatItem>)
-		})
+		});
 		const ChatListClassNames = classNames({
 			'page-container animated': true
-		})
+		});
 		const UserCenterClassNames = classNames({
 			'page-container-center animated': true,
 			'page-container-show': currentPage === 'USERINFO-PAGE'
-		})
+		});
 		const CreateRoomClassNames = classNames({
 			'createRoom-container': true,
-			'createRoom-container-show': currentPage == 'CREATE-ROOM-PAGE'
-		})
+			'createRoom-container-show': currentPage === 'CREATE-ROOM-PAGE'
+		});
 		const ChatBoxClassNames = classNames({
 			'page-container-chat animated': true,
-			'page-container-show': currentPage == 'CHATROOM-PAGE'
-		})
+			'page-container-show': currentPage === 'CHATROOM-PAGE'
+		});
 		const AddFriendsClassNames = classNames({
 			'page-container-chat animated': true,
-			'page-container-show': currentPage == 'ADDFRIENDS-PAGE'
-		})
+			'page-container-show': currentPage === 'ADDFRIENDS-PAGE'
+		});
 		const FriendsClassNames = classNames({
 			'page-container-friends animated': true,
-			'page-container-show': currentPage == 'FRIENDSLISTS-PAGE'
-		})
+			'page-container-show': currentPage === 'FRIENDSLISTS-PAGE'
+		});
 		const NotifyClassNames = classNames({
 			'page-container-friends animated': true,
-			'page-container-show': currentPage == 'NOTIFY-PAGE'
-		})
+			'page-container-show': currentPage === 'NOTIFY-PAGE'
+		});
 		return (
 			<div className="MessageList-container">
 					{/*聊天列表*/}

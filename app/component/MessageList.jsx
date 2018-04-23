@@ -60,7 +60,6 @@ export default class MessageList extends Component {
 					<p>{ info.owner.nickname }</p>
 					<div className="MessageList-message">
 							<MessageIcon content={info.content} />
-							<div className="triangle-right-outer"></div>
 					</div>
 				</div>
 			</div>
