@@ -79,5 +79,10 @@ module.exports = {
       filepath: path.join(__dirname, '/server/public/dist/vendor.js'),
       includeSourcemap: false
     })
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'commons', // 这公共代码的chunk名为'commons'
+    //   filename: '[name].bundle.js', // 生成后的文件名，虽说用了[name]，但实际上就是'commons.bundle.js'了
+    //   minChunks: 2, // 设定要有4个chunk（即4个页面）加载的js模块才会被纳入公共代码
+    // })
   ]
 };

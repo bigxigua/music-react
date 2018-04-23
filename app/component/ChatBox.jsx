@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import '../scss/chatbox.scss'
 import { socket } from '../actions/index.js'
 import MessageList from '../component/MessageList.jsx'
-import $ from 'jquery';
 
 export default class ChatBox extends Component {
 	constructor(props){
@@ -27,12 +26,10 @@ export default class ChatBox extends Component {
 		return TBZ.sortUp(histories, 'timestamp');
 	}
 	autoScroll(speed){
-		let _speed = speed || 'normal';
-		let $chatBox = $('.ChatBox-container');
-		if($chatBox.length == 0) return;
-		$chatBox.stop().animate({
-			scrollTop: $chatBox[0].scrollHeight + 'px'
-		}, _speed, 'swing');
+		// let _speed = speed || 'normal';
+		let chatBox = document.querySelector('.ChatBox-container');
+		if(!chatBox) return;
+    chatBox.scrollTop = chatBox.scrollTop + '1000';
 	}
 	componentWillReceiveProps(nextProps){
 		if(!nextProps.currentRoomName) return;

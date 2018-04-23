@@ -5,16 +5,16 @@ const room = require('../controllers/room.js');
 const config = require('../config/init.js');
 
 const callbackError = function (cb, err) {
-	console.log(err)
+	console.log(err);
 	cb({
 		isError: true, 
 		errMsg: '服务器出错'
 	})
-}
+};
 
 const callbackSuccess = function (cb, info) {
 	cb(info)
-}
+};
 
 let SocketsMap = {};
 
@@ -73,13 +73,21 @@ module.exports = function (io) {
 		});
 
 		socket.on('addFriend', (accounts, cb) => {
-			user.addFriend(accounts).then((result) => {
-				callbackSuccess(cb, result)
-			}).catch((err) => {
-				callbackError(cb, err)
-			})
-		});
+      user.addFriend(accounts).then((result) => {
+        callbackSuccess(cb, result)
+      }).catch((err) => {
+        callbackError(cb, err)
+      })
+    });
+
+    socket.on('checkLogin', (account, cb) => {
+      user.checkLogin(account).then((result) => {
+        callbackSuccess(cb, result)
+      }).catch((err) => {
+        callbackError(cb, err)
+      })
+    });
 
 
 	})
-}
+};

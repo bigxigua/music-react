@@ -5,7 +5,7 @@ router.post('/register', async (ctx, next) => {
 	const {account, password, nickname} = ctx.request.body;
 	const info = await user.createUser(account, password, nickname);
   ctx.body = {code: 0, data: info}
-})
+});
 
 
-module.exports = router
+module.exports = router;

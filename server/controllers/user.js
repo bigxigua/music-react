@@ -56,6 +56,7 @@ module.exports = {
 			onlineState: 1,
 			rooms: [room._id]
 		});
+		console.log(newUser)
 		if (newUser) {
 			room.users.push(newUser._id);
 			await room.save();
@@ -143,7 +144,6 @@ module.exports = {
 		}
 	},
 	addFriend: async (accounts) => {
-		console.log(accounts)
 		let friend = await User.findOneUser({
 			account: accounts.friendAccount
 		});
@@ -166,5 +166,11 @@ module.exports = {
 				message: '添加好友失败'
 			}
 		}
-	}
-}
+	},
+  checkLogin: async (account) => {
+    let user = await User.findOneUser({
+      account: account
+    });
+		return (user ? true : false);
+  }
+};

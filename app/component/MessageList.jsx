@@ -47,9 +47,9 @@ export default class MessageList extends Component {
 	render(){
 		const info = this.props.data;
 		const messageClassNames = classNames({
-			'MessageList-container': true,
+			'MessageList-container clearfix': true,
 			'MessageList-container-other': info.owner.account+'' !== localStorage.getItem('account')
-		})
+		});
 
 		return ( 
 			<div className={messageClassNames}>

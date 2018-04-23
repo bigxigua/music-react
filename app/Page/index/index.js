@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import Index from './Index.jsx'
 
 import { 
@@ -7,7 +6,8 @@ import {
 	setPageState,
 	getUserInfo,
 	getRoomLists,
-	createRoomAction
+	createRoomAction,
+  checkLogin
 } from '../../actions/index.js'
 
 function mapStateToProps(state) {
@@ -15,7 +15,8 @@ function mapStateToProps(state) {
 		currentPage: state.setPageState.pageState,
 		lists: state.roomList.roomLists,
 		histories: state.message.messageLists,
-		userInfo: state.setUserInfo.userInfo
+		userInfo: state.setUserInfo.userInfo,
+		isLogin: state.setUserInfo.isLogin,
 	}
 }
 
@@ -28,6 +29,9 @@ function mapDispatchToProps(dispatch) {
 		createRoomAction: (info) => {
 			dispatch(createRoomAction(info))
 		},
+		checkLogin: (account) => {
+			return dispatch(checkLogin(account))
+		}
 	}
 } 
 

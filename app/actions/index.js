@@ -1,6 +1,6 @@
-import io from 'socket.io-client' 
+import io from 'socket.io-client'
 
-export const socket = io('http://www.tbzhong.cn:8080', {
+export const socket = io(window.TBZ.DEFAULT_URL, {
 	'force new connection': true
 });
 
@@ -10,7 +10,7 @@ export const setPageState = (page) => {
 		type: 'SET_PAGE_STATE',
 		page
 	}
-}
+};
 
 //删除一条聊天记录
 export const deleteChatItem = (index) => {
@@ -60,13 +60,13 @@ export const _getUserInfo_ = (info) => {
 		type: 'GET_USER_INFO',
 		info //登陆的用户信息
 	}
-}
+};
 
 //获取登陆用户信息
 export const getUserInfo = (account) => {
 	return (dispatch) => {
 		return new Promise((resolve, reject) => {
-			if (typeof account == 'object' && account) {
+			if (typeof account === 'object' && account) {
 				dispatch(_getUserInfo_(account));
 				resolve(account)
 			} else {
@@ -79,15 +79,43 @@ export const getUserInfo = (account) => {
 			}
 		})
 	}
-}
+};
+
+
+//检测用户登陆信息是否过期等
+export const __checkLogin__ = (info) => {
+  return {
+    type: 'CHECK_LOGIN',
+    info //true or false
+  }
+};
+
+//检测用户登陆信息是否过期等
+export const checkLogin = (account) => {
+  return (dispatch) => {
+    return new Promise((resolve, reject) => {
+    	if(!account) {
+        dispatch(__checkLogin__(false));
+        resolve(false)
+			} else {
+        socket.emit('checkLogin', account, (body) => {
+          if (!body.isError) {
+            dispatch(__checkLogin__(body));
+          }
+          body.isError ? (reject(body)) : (resolve(body))
+        })
+			}
+    })
+  }
+};
 
 //createRoom
-export const _createRoom = (info) => {
+export const _createRoom_ = (info) => {
 	return {
 		type: 'ADD_ROOM_LISTS',
 		info
 	}
-}
+};
 
 //创建房间
 export const createRoomAction = (info) => {
@@ -95,13 +123,13 @@ export const createRoomAction = (info) => {
 		return new Promise((resolve, reject) => {
 			socket.emit('createRoom', info, (body) => {
 				if (!body.isError) {
-					dispatch(_createRoom(body));
+					dispatch(_createRoom_(body));
 				}
 				body.isError ? (reject(body)) : (resolve(body))
 			})
 		})
 	}
-}
+};
 
 //_getRoomLists
 export const _getRoomLists = (lists) => {
@@ -109,7 +137,7 @@ export const _getRoomLists = (lists) => {
 		type: 'GET_ROOM_LISTS',
 		lists
 	}
-}
+};
 
 //获取房间列表
 export const getRoomLists = (token) => {
@@ -124,7 +152,7 @@ export const getRoomLists = (token) => {
 			})
 		})
 	}
-}
+};
 
 //设置用户当前在哪个房间
 export const setUserCurRoom = (roomName) => {
@@ -132,7 +160,7 @@ export const setUserCurRoom = (roomName) => {
 		type: 'SET_USER_CURROOM',
 		roomName
 	}
-}
+};
 
 //获取所有房间的聊天记录
 export const getAllRoomHistories = (histories) => {
@@ -140,7 +168,7 @@ export const getAllRoomHistories = (histories) => {
 		type: 'GET_HISTORY_MESSAGE',
 		histories
 	}
-}
+};
 
 
 //搜索用户
@@ -149,7 +177,7 @@ export const _searchUsers_ = (userLists) => {
 		type: 'SEARCH_USERS',
 		userLists
 	}
-}
+};
 //搜索用户
 export const searchUsers = (nickname) => {
 	return (dispatch) => {
@@ -162,7 +190,7 @@ export const searchUsers = (nickname) => {
 			})
 		})
 	}
-}
+};
 
 //申请加好友
 export const _applyFriend_ = (result) => {
@@ -170,7 +198,7 @@ export const _applyFriend_ = (result) => {
 		type: 'APPLY_FRIEND',
 		result
 	}
-}
+};
 //申请加好友
 export const applyFriend = (accounts) => {
 	return (dispatch) => {
@@ -183,7 +211,7 @@ export const applyFriend = (accounts) => {
 			})
 		})
 	}
-}
+};
 
 //添加好友
 export const _addFriend_ = (result) => {
@@ -191,7 +219,7 @@ export const _addFriend_ = (result) => {
 		type: 'ADD_FRIEND',
 		result
 	}
-}
+};
 //添加好友
 export const addFriend = (accounts) => {
 	return (dispatch) => {
@@ -204,7 +232,7 @@ export const addFriend = (accounts) => {
 			})
 		})
 	}
-}
+};
 
 //更新当前用户的申请列表
 export const updateApplyLists = (myApplyLists) => {
@@ -212,5 +240,5 @@ export const updateApplyLists = (myApplyLists) => {
 		type: 'APPLY_FRIEND',
 		myApplyLists
 	}
-}
+};
 

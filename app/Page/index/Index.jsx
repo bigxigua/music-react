@@ -27,6 +27,7 @@ export default class Index extends Component {
 		this.getUserInfo(TBZ.USER_ACCOUNT); //获取登陆用户的所有信息
 		this.getRoomLists();
 		this.createPrivateRoom();
+		this.checkLogin();
 	}
 
 	componentDidMount(){
@@ -70,6 +71,18 @@ export default class Index extends Component {
 		}
 		return TBZ.sortDown(roomHistories, 'timestamp')[0];
 	}
+	checkLogin() {
+    //身份验证
+    if (!localStorage.getItem('token') && !/login/.test(location.pathname)) return;
+    this.props.checkLogin(TBZ.USER_ACCOUNT).then(d => {
+    	if(!d) {
+        localStorage.removeItem('account');
+        localStorage.removeItem('token');
+        window.location.href = '/login';
+			}
+		})
+  }
+
 	render(){
 		const { currentPage } = this.props;
 		// const currentPage = 'ADDFRIENDS-PAGE';

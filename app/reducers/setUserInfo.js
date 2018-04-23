@@ -24,6 +24,12 @@ export default function setUserInfo(state = defaultState, action) {
 					myApplyLists: action.myApplyLists
 				})
 			}
+    case 'CHECK_LOGIN':
+			{
+				return Object.assign({}, state, {
+					isLogin: action.info
+				})
+			}
 		default:
 			{
 				return state
