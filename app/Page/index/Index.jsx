@@ -85,7 +85,7 @@ export default class Index extends Component {
 
 	render(){
 		const { currentPage } = this.props;
-		// const currentPage = 'ADDFRIENDS-PAGE';
+		// const currentPage = 'USERINFO-PAGE';
 		const MessageListData = {isChatList: currentPage === 'CHATROOM-PAGE'};
 		const ListItems = this.props.lists.map((item) =>{
 				item.latestMessage = this.getLatestMessage(item.roomName);

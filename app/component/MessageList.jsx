@@ -25,11 +25,11 @@ const MessageIcon = (props) => {
 		} else {
 			return item
 		}
-	})
+	});
 	let resultArr = result.split('fuck'), len = resultArr.length;
 	const spanClass = classNames({
 			'nomal-span': len !== 1
-	})
+	});
 	return resultArr.map((item, index) => {
 		return (
 			<div key={index} className="content-msg">
@@ -38,7 +38,7 @@ const MessageIcon = (props) => {
 			</div>)
 	});
 	
-}
+};
 
 export default class MessageList extends Component {
 	constructor(props){

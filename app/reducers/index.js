@@ -15,6 +15,6 @@ const rootReducer = combineReducers({
 	message,
 	roomList,
 	friends
-})
+});
 
 export default rootReducer

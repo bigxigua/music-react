@@ -103,9 +103,18 @@ hr {
 input, select {
     vertical-align: middle;
     outline: none;
-    -webkit-appearance: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    border: none;
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    padding: 1px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+    line-height: normal !important;
+
 }
 
 pre {

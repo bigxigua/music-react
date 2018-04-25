@@ -6,7 +6,7 @@ import {
 
 let defaultState = {
 	chatRoomBackGround: TBZ.DEFAULT_CHATROOM_BG
-}
+};
 
 export default function setChatRoomInfo(state = defaultState, action) {
 	switch(action.type) {

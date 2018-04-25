@@ -113,7 +113,7 @@ export default class Head extends Component {
 		const Element = isChatList ? 
 		(<div className="Header-Menu-container" onClick={this.showChatLists}>
 				<i className="w-icon-menu"></i>
-				<div className="Header-title">{title}</div>
+				<div className="Header-title">TBZ</div>
 		</div>): 
 		(<div className="Header-onlineState-container">
 				<img src={avatar ? avatar : TBZ.DEFAULT_AVATAR} onClick={this.showUserCenter} />

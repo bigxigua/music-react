@@ -9,6 +9,10 @@
 	width: 100%;
 	min-height: 1.4rem;
 	position: relative;
+	padding-bottom: 0.2rem;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .MessageList-container-other {
@@ -37,6 +41,7 @@
 				border-bottom: 7px solid transparent;
 				left: -0.1rem !important;
 				top: 0.1rem;
+				text-align: right;
 			}
 			&:after{
 				display: none;
@@ -68,12 +73,12 @@
 .MessageList-userinfo {
 	float: right;
 	margin-right: 0.1rem;
+	margin-top: 0.1rem;
 
 	.MessageList-avatar {
-		width: .8rem;
-		height: .8rem;
+		width: .7rem;
+		height: .7rem;
 		@include border-radius(100%);
-		margin-top: 0.2rem;
 	}
 
 }
@@ -83,19 +88,19 @@
 	color: #5f6265;
 
 	p {
-		font-size: 0.3rem;
+		font-size: 0.25rem;
+		color: #5f6265;
 		text-align: right;
 		margin-right: 0.4rem;
-		position: relative;
-		top: 0.15rem;
+		font-weight: bold;
+		margin-bottom: 0.05rem;
 	}
 
 	.MessageList-message {
 		margin-right: 0.3rem;
-		margin-top: 0.2rem;
 		display: inline-block;
-		text-align: center;
-		padding: 0.1rem 0.13rem;
+		text-align: left;
+		padding: 0.14rem 0.16rem;
 		background: #fff;
 		max-width: 90%;
 		border: 1px solid #fff;

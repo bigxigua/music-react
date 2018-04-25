@@ -29,7 +29,7 @@ export default class ChatBox extends Component {
 		// let _speed = speed || 'normal';
 		let chatBox = document.querySelector('.ChatBox-container');
 		if(!chatBox) return;
-    chatBox.scrollTop = chatBox.scrollTop + '1000';
+    chatBox.scrollTop = chatBox.scrollTop + '1000000000000';
 	}
 	componentWillReceiveProps(nextProps){
 		if(!nextProps.currentRoomName) return;

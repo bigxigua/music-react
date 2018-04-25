@@ -13,42 +13,13 @@ export default class UserCenter extends Component {
 		const { avatar, nickname, account, info } = this.props.userInfo;
 		return (
 				<div className="UserCenter-container">
-						<div className="UserCenter-top-bg">
-								<div className="UserCenter-out" onClick={this.setPageState}>
-										<i className="w-icon-arrow-left"></i>返回
-								</div>
-								<img src={TBZ.DEFAULT_USER_BG} />
-								<div className="UserCenter-avatar">
-										<img src={avatar ? avatar : TBZ.DEFAULT_AVATAR} />
-								</div>
-								<div className="UserCenter-zan">
-										<p><i className="w-icon-like-o"></i></p>
-										<p>1000</p>
-								</div>
+						<div className="UserCenter-header">
+							<i className="w-icon-arrow-left"></i>
+							<span>用户资料</span>
 						</div>
-						<div className="UserCenter-username">{ nickname }</div>
-						<div className="UserCenter-sign">
-							<span>{ info || '快去设置个性签名吧！！' }</span>
-							<i className="w-icon-edit"></i>
+						<div className="UserCenter-profile">
+              <img src="" alt=""/>
 						</div>
-						<ul className="UserCenter-userInfo">
-						    <li>
-						    		<i className="w-icon-user"></i>
-						    		<span>110110110</span>
-						    </li>
-						    <li>
-						    		<i className="w-icon-user"></i>
-						    		<span>110110110</span>
-						    </li>
-						    <li>
-						    		<i className="w-icon-user"></i>
-						    		<span>110110110</span>
-						    </li>
-						    <li>
-						    		<i className="w-icon-user"></i>
-						    		<span>110110110</span>
-						    </li>
-						</ul>
 				</div>
 		)
 	}
