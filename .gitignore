@@ -51,5 +51,8 @@ jspm_packages
 #eslint
 .eslintcache
 
+package-lock.json
+
+
 #npm.rar
 node_modules.rar
